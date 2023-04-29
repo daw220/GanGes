@@ -23,8 +23,6 @@ and open the template in the editor.
     echo(sideBar());
     ?>  
         
-        <h2>REBAÑO</h2>
-        
     <div class="modal" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -39,13 +37,32 @@ and open the template in the editor.
                         <td width="40%">ID</td>
                         <td width="60%"><input class="borrar form-control" type="text" id="txtID" readonly /></td>
                     </tr>
-                    <tr>
-                        <td width="40%">NOMBRE </td>
-                        <td width="60%"><input class="borrar obligatorio form-control" type="text" id="txtNom" /></td>
+                          <td width="40%">Crotal</td>
+                          <td width="60%"><input class="borrar form-control" type="text" id="txtCrotal" required /></td>
                     </tr>
                     <tr>
-                        <td width="40%">DESCRIPCION</td>
-                        <td width="60%"><input class="borrar obligatorio form-control" type="text" id="txtDescripcion" /></td>
+                        <td width="40%">Nombre </td>
+                        <td width="60%"><input class="borrar form-control" type="text" id="txtNom" required /></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">Fecha de nacimiento</td>
+                        <td width="60%"><input class="borrar form-control" type="text" id="fecha" required/></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">Sexo </td>
+                        <td width="60%"><select class="borrar form-control" type="text" id="idSexo" required></select></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">Raza </td>
+                        <td width="60%"><input class="borrar form-control" type="text" id="txtRaza" required/></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">Estado de explotacion </td>
+                        <td width="60%"><select class="borrar form-control" type="text" id="idExpltacion" required></select></td>
+                    </tr>
+                    <tr>
+                        <td width="40%">Estado vital </td>
+                        <td width="60%"><select class="borrar form-control" type="text" id="idVital" required></select></td>
                     </tr>
                 </table>
                 <p id="mensaje"></p>
@@ -58,8 +75,12 @@ and open the template in the editor.
 
     </div>
 </div>
-<div id="tablas"></div>
-      <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
-    <script src="../lib/datatables.min.js"></script>    
+    
+<div class="caja pri">
+    <h3 class="tLogin">REBAÑO</h3>
+    <button type="button" id="anadir" class="btn btn-info" data-toggle="modal" data-target="#myModal">Añadir</button>
+    <table class="table" id="tabla"></table>
+    <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+</div>
 </body> 
 </html>

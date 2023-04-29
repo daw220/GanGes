@@ -8,6 +8,37 @@ and open the template in the editor.
     Author     : Borja
 */
 
+.caja {
+    border-radius: 8px;
+    box-shadow: #d3d3d3 2px 2px 10px 10px;
+    padding: 50px;
+}
+.pri{
+    width: 80vw;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow:column;
+}
+
+.tLogin{
+    width:100%;
+    text-align:center;
+    font-size:25pt;
+    font-weight:500;
+    font-style:italic;
+}
+
+#anadir{
+    position: absolute;
+    left: 5%;
+    top:5%;
+}
+
+
  #sidebar {
       width: 200px;
       position: fixed;
@@ -62,12 +93,7 @@ and open the template in the editor.
         bottom: 10%;
         left:10%;
     }
-    
-    #volver{
-        position: absolute;
-        top: 50%;
-        left:42%;
-    }
+   
     h2{
         position: absolute;
         top: 30%;

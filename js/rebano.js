@@ -21,65 +21,79 @@ function limpiarMensaje() {
 
 
 function anadir() {
-    if (obligatorio() == true) {
 
-        let form = new FormData();
-        let id = document.getElementById("txtID").value;
-        form.append("IIDCURSO", id);
-        let nombre = document.getElementById("txtNom").value;
-        form.append("NOMBRE", nombre);
-        let descripcion = document.getElementById("txtDescripcion").value;
-        form.append("DESCRIPCION", descripcion);
-        form.append("BHABILITADO", 1);
+    let form = new FormData();
+    form.append("idAni", document.getElementById("txtID").value);
+    form.append("crotal", document.getElementById("txtCrotal").value);
+    form.append("nombre", document.getElementById("txtNom").value);
+    form.append("fecha", document.getElementById("fecha").value);
+    form.append("sexo", document.getElementById("idSexo").value);
+    form.append("raza", document.getElementById("txtRaza").value);
+    form.append("explo", document.getElementById("idExpltacion").value);
+    form.append("vital", document.getElementById("idVital").value);
+    form.append("accion", 2);
+    
+    let regex = /^ES\d{14}$/;
+    let str = document.getElementById("txtCrotal").value;
+    let isValid = regex.test(str);
 
+    if(!isValid)
+    {
+        let mensaje = document.getElementById("mensaje");
+        mensaje.innerHTML = "Formato de crotal no valido";
+        mensaje.style = "color:red;";
+        limpiarMensaje();
+        return;
+    }    
 
-        if (confirm("¿Seguro que quieres guardar?") == 1) {
-            $.ajax({
-                type: "POST",
-                url: "/Curso/Insertar",
-                data: form,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data == 1) {                     
-                        document.getElementById("btncancelar").click();
-                        inicio();
-                    } else {
-                        if (data == -1) {
-                            let na = localStorage.getItem("na");
-                            if (na == 1) {
-                                voz("Ya existe este curso", true);
-                            }
-
-                            let mensaje = document.getElementById("mensaje");
-                            mensaje.innerHTML = "Ya existe este curso";
-                            mensaje.style = "color:red;";
-                            limpiarMensaje();
-                        } else {
-                            console.log("Error en cs")
-                        }
-
-                    }
+    $.ajax({
+        type: "POST",
+        url: "../operaciones/rebanoOperations.php",
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            if (data == 1) {                     
+                document.getElementById("btncancelar").click();
+                inicio();
+            } else {
+                if (data == -1) {
+                    let mensaje = document.getElementById("mensaje");
+                    mensaje.innerHTML = "Ya existe este registro";
+                    mensaje.style = "color:red;";
+                    limpiarMensaje();
                 }
-            })
+            }
         }
-    }
+    })
 }
 
 
 
 
+function select(json, sel, primero) {
+    sel.innerHTML = "";
+    if (primero == true) {
+        let opt = document.createElement("option");
+        opt.value = "";
+        opt.innerHTML = " -- Selecione -- ";
+        sel.appendChild(opt);
+    }
+
+    for (let i = 0; i < json.length; i++) {
+
+        let opt = document.createElement("option");
+        opt.value = json[i].ID;
+        opt.innerHTML = " " + json[i].DESCRIPCION;
+        sel.appendChild(opt);
+    };
+}
+
 
 function tabla(columnas, json) {
 
-    let div = document.getElementById("tablas");
-    div.innerHTML = "";
-
-    let tab = document.createElement("table");
-    tab.id = "tabla";
-    tab.classList = "table"
-    div.appendChild(tab);
-
+    let tab = document.getElementById("tabla");
+    tab.innerHTML = "";
     let thead = document.createElement("thead");
     tab.appendChild(thead);
 
@@ -93,14 +107,17 @@ function tabla(columnas, json) {
     };
 
     let td5 = document.createElement("td");
-    td5.innerHTML = "Acciones";
+    td5.innerHTML = "ACCIONES";
     tr.appendChild(td5)
 
     let tbody = document.createElement("tbody");
     tab.appendChild(tbody);
+    let keys;
+    if(json[0] != null)
+    {
+        keys= Object.keys(json[0]);
+    }
 
-    let keys = Object.keys(json[0]);
-    console.log(keys)
     for (let i = 0; i < json.length; i++) {
 
         let tr = document.createElement("tr");
@@ -123,7 +140,7 @@ function tabla(columnas, json) {
         td1.appendChild(btn1);
 
         btn1.addEventListener("click", (ev => {
-            editar(json.keys[0]);
+            editar(json[i][keys[0]]);
 
         }));
 
@@ -135,9 +152,18 @@ function tabla(columnas, json) {
        
 
         btn2.addEventListener("click", (ev => {
-            borrar(json.keys[0]);
+            borrar(json[i][keys[0]]);
 
         }));
+        
+        if(i == 0)
+        {
+            let btn3 = document.getElementById("anadir");
+            btn3.addEventListener("click", (ev => {
+                editar(0);
+
+            }));
+        }
 
         $("#tabla").DataTable();
     }
@@ -147,92 +173,83 @@ function tabla(columnas, json) {
 }
 function borrar(id) {
     let form = new FormData();
-    form.append("IIDCURSO", id);
-
-    let na = localStorage.getItem("na");
-    if (na == 1) {
-        voz("¿Seguro que quieres borrar?", true);
-    }
-
-    if (confirm("¿Seguro que quieres borrar?") == 1) {
-        $.ajax({
-            type: "POST",
-            url: "/Curso/Eliminar",
-            data: form,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (data != 0) {
-                    let na = localStorage.getItem("na");
-                    if (na == 1) {
-                        voz("Registro borrado", true);
-                    }
-                    document.getElementById("btncancelar").click();
-                    inicio();
-
-                }
+    form.append("accion", 3);
+    form.append("ID", id);
+    $.ajax({
+        type: "POST",
+        url: "../operaciones/rebanoOperations.php",
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            if (data != 0) {
+                inicio();
             }
-        })
-    } 
+        }
+    })
+} 
 
-}
+
 
 function editar(id) {
-    let inputs = document.getElementsByClassName("obligatorio");
-    for (let i = 0; i < inputs.length; i++) {
-            inputs[i].parentNode.classList.remove("error");
-    }
-    let fun = document.getElementById("fun");
-    let na = localStorage.getItem("na");
-    if (id == 0) {
-        borrarInput();
-        if (na == 1) {
-            voz("Añadir", true);
-        }
-        fun.innerHTML = "Añadir";
-    } else {
-        $.get(`/Curso/Recuperardatos?id=${id}`, (data) => {
-            rellenarEditar(data);
+    borrarInput();
+    if (id != 0){
+        $.get("../operaciones/rebanoOperations.php?accion=1&id="+id, (data) => {
+            rellenarEditar(JSON.parse(data));
                 
         });
-        if (na == 1) {
-            voz("Editar", true);
-        }
-        fun.innerHTML = "Editar";
+
     }
 };
 
 function rellenarEditar(json) {
     let keys = Object.keys(json[0]);
     document.getElementById("txtID").value = json[0][keys[0]];
-    document.getElementById("txtNom").value = json[0][keys[1]];
-    document.getElementById("txtDescripcion").value = json[0][keys[2]];
+    document.getElementById("txtCrotal").value = json[0][keys[1]];
+    document.getElementById("txtNom").value = json[0][keys[2]];
+    document.getElementById("fecha").value = json[0][keys[3]];
+    document.getElementById("idSexo").value = json[0][keys[4]];
+    document.getElementById("txtRaza").value = json[0][keys[5]];
+    document.getElementById("idExpltacion").value = json[0][keys[6]];
+    document.getElementById("idVital").value = json[0][keys[7]];
+    
 }
 
 function borrarInput() {
-
     let inputs = document.getElementsByClassName("borrar");
 
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].value = "";
-            
     }
 
 }
 
 
 function inicio() {
-
-
-    $.getJSON("../operaciones/rebanoOperations.php?accion=0",
-        function (data, textStatus, jqXHR) {
-
-            tabla(["DNI", "NOMBRE"], data);
+    $.get("../operaciones/rebanoOperations.php?accion=0",function (data) {
+            tabla(["ID","CROTAL","NOMBRE","FECHA NACIMIENTO","RAZA"], JSON.parse(data));
         }
     );
 
+    $.get("../operaciones/rebanoOperations.php?accion=4", (data) => {
 
+        select(JSON.parse(data), document.getElementById("idSexo"), true);
+    });
+    $.get("../operaciones/rebanoOperations.php?accion=5", (data) => {
+        select(JSON.parse(data), document.getElementById("idExpltacion"), true);
+    });
+    $.get("../operaciones/rebanoOperations.php?accion=6", (data) => {
+        select(JSON.parse(data), document.getElementById("idVital"), true);
+    });
 
+    $("#fecha").datepicker(
+        {
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true
+        }
+    );
+    
 };
 
 window.onload = inicio;
