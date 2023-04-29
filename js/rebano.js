@@ -1,12 +1,25 @@
 'use strict'
 
-/*Funcion que borra los mensajer de retroalimentacion pàra el usuario*/
+function obligatorio() {
+    let exito = true;
+    let inputs = document.getElementsByClassName("obligatorio");
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value == "") {
+            exito = false;
+            inputs[i].parentNode.classList.add("error");
+        } else {
+            inputs[i].parentNode.classList.remove("error");
+        }
+    }
+    return exito;
+}
+
 function limpiarMensaje() {
 
     setTimeout(function () { document.getElementById("mensaje").innerHTML = ""; }, 5000);
 }
 
-/*Utilizadon la funcion ajax de Jquery añadie un registro a la base de datos*/
+
 function anadir() {
     if (obligatorio() == true) {
 
@@ -56,7 +69,7 @@ function anadir() {
 
 
 
-/*Genera la estructura basica de una tabla con  diferente campo y funciones*/
+
 function tabla(columnas, json) {
 
     let div = document.getElementById("tablas");
@@ -132,7 +145,6 @@ function tabla(columnas, json) {
 
     
 }
-/*Utilizadon la funcion ajax de Jquery borra un registro a la base de datos*/
 function borrar(id) {
     let form = new FormData();
     form.append("IIDCURSO", id);
@@ -152,9 +164,9 @@ function borrar(id) {
             success: function (data) {
                 if (data != 0) {
                     let na = localStorage.getItem("na");
-                    // if (na == 1) {
-                    //     voz("Registro borrado", true);
-                    // }
+                    if (na == 1) {
+                        voz("Registro borrado", true);
+                    }
                     document.getElementById("btncancelar").click();
                     inicio();
 
@@ -165,32 +177,31 @@ function borrar(id) {
 
 }
 
-/*Utilizadon la funcion get de Jquery obtiene un registro a la base de datos para edrtarlo*/
 function editar(id) {
     let inputs = document.getElementsByClassName("obligatorio");
     for (let i = 0; i < inputs.length; i++) {
             inputs[i].parentNode.classList.remove("error");
     }
+    let fun = document.getElementById("fun");
     let na = localStorage.getItem("na");
     if (id == 0) {
         borrarInput();
-        // if (na == 1) {
-        //     voz("Añadir", true);
-        // }
+        if (na == 1) {
+            voz("Añadir", true);
+        }
         fun.innerHTML = "Añadir";
     } else {
         $.get(`/Curso/Recuperardatos?id=${id}`, (data) => {
             rellenarEditar(data);
                 
         });
-        // if (na == 1) {
-        //     voz("Editar", true);
-        // }
+        if (na == 1) {
+            voz("Editar", true);
+        }
         fun.innerHTML = "Editar";
     }
 };
 
-/*Completa los campos del formulario al entrar en la funcion editar*/
 function rellenarEditar(json) {
     let keys = Object.keys(json[0]);
     document.getElementById("txtID").value = json[0][keys[0]];
@@ -198,8 +209,6 @@ function rellenarEditar(json) {
     document.getElementById("txtDescripcion").value = json[0][keys[2]];
 }
 
-
-/*Borra los datos del formulario*/
 function borrarInput() {
 
     let inputs = document.getElementsByClassName("borrar");
@@ -211,19 +220,11 @@ function borrarInput() {
 
 }
 
-/*FUncion que se realiza al cargar la pagina que rellena la tabla*/
+
 function inicio() {
 
-    $("#fecha").datepicker(
-        {
-            dateFormat: "dd/mm/yy",
-            changeMonth: true,
-            changeYear: true
-        }
-    );
 
-
-    $.get("../operaciones/rebanoOperations.php?accion=0",
+    $.getJSON("../operaciones/rebanoOperations.php?accion=0",
         function (data, textStatus, jqXHR) {
 
             tabla(["DNI", "NOMBRE"], data);
