@@ -29,11 +29,11 @@ function anadir() {
     form.append("fecha", document.getElementById("fecha").value);
     form.append("sexo", document.getElementById("idSexo").value);
     form.append("raza", document.getElementById("txtRaza").value);
-    form.append("explo", document.getElementById("idExpltacion").value);
+    form.append("explo", document.getElementById("idExplotacion").value);
     form.append("vital", document.getElementById("idVital").value);
     form.append("accion", 2);
     
-    let regex = /^ES\d{14}$/;
+    let regex = /^ES\d{12}$/;
     let str = document.getElementById("txtCrotal").value;
     let isValid = regex.test(str);
 
@@ -69,8 +69,6 @@ function anadir() {
 }
 
 
-
-
 function select(json, sel, primero) {
     sel.innerHTML = "";
     if (primero == true) {
@@ -101,12 +99,12 @@ function tabla(columnas, json) {
     thead.appendChild(tr);
     for (let i = 0; i < columnas.length; i++) {
 
-        let td5 = document.createElement("td");
+        let td5 = document.createElement("th");
         td5.innerHTML = columnas[i];
         tr.appendChild(td5);
     };
 
-    let td5 = document.createElement("td");
+    let td5 = document.createElement("th");
     td5.innerHTML = "ACCIONES";
     tr.appendChild(td5)
 
@@ -133,7 +131,7 @@ function tabla(columnas, json) {
         tr.appendChild(td1);
 
         let btn1 = document.createElement("button");
-        btn1.classList = "btn btn-primary";
+        btn1.classList = "btn btn-success";
         btn1.setAttribute("data-toggle", "modal");
         btn1.setAttribute("data-target", "#myModal");
         btn1.innerHTML="Editar";
@@ -164,8 +162,6 @@ function tabla(columnas, json) {
 
             }));
         }
-
-        $("#tabla").DataTable();
     }
     
 
@@ -210,8 +206,8 @@ function rellenarEditar(json) {
     document.getElementById("fecha").value = json[0][keys[3]];
     document.getElementById("idSexo").value = json[0][keys[4]];
     document.getElementById("txtRaza").value = json[0][keys[5]];
-    document.getElementById("idExpltacion").value = json[0][keys[6]];
-    document.getElementById("idVital").value = json[0][keys[7]];
+    document.getElementById("idVital").value = json[0][keys[6]];
+    document.getElementById("idExplotacion").value = json[0][keys[7]];
     
 }
 
@@ -227,7 +223,8 @@ function borrarInput() {
 
 function inicio() {
     $.get("../operaciones/rebanoOperations.php?accion=0",function (data) {
-            tabla(["ID","CROTAL","NOMBRE","FECHA NACIMIENTO","RAZA"], JSON.parse(data));
+
+           tabla(["ID","CROTAL","NOMBRE","FECHA NACIMIENTO","RAZA"], JSON.parse(data));
         }
     );
 
@@ -236,7 +233,7 @@ function inicio() {
         select(JSON.parse(data), document.getElementById("idSexo"), true);
     });
     $.get("../operaciones/rebanoOperations.php?accion=5", (data) => {
-        select(JSON.parse(data), document.getElementById("idExpltacion"), true);
+        select(JSON.parse(data), document.getElementById("idExplotacion"), true);
     });
     $.get("../operaciones/rebanoOperations.php?accion=6", (data) => {
         select(JSON.parse(data), document.getElementById("idVital"), true);

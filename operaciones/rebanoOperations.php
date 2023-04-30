@@ -56,19 +56,52 @@ include ("../lib/fecha.php");
         $sexo = $_REQUEST["sexo"];
         $raza =$_REQUEST["raza"];
         $vital=$_REQUEST["vital"];
-        $explotacion=$_REQUEST["explo"];
+        $estado = $_REQUEST["explo"];
+        $tExplotacion = 0;
+        $tLactancia = 0;
+
+        switch ($vital) 
+        {
+            case '1':             
+                $tExplotacion = 270;               
+                break;
+            case '2':               
+                $tExplotacion = 420;
+                break;
+            case '3':                
+                $tExplotacion = 2;
+                break;
+            case '4':              
+                $tExplotacion = 21;
+                break;
+            case '5':               
+                $tExplotacion = 0;
+                break;
+            default:
+                break;
+        }
         
+        if($estado == 1)
+        {
+            $tLactancia = 225;
+        }
+        else
+        {
+            $tLactancia = 45;
+        }
+
         try
         {
+
             if($id == "")
             {
-                $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `IDESTADO`, `habilitado`) VALUES (default,'$crotal','$nombre','`$fecha','$sexo','$raza','null','0','1','$vital','$explotacion','1')";
+                $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default,'$crotal','$nombre','`$fecha','$sexo','$raza','null','$tExplotacion','1','$vital', '$tLactancia','$estado','1')";
                 mysqli_query ($conexion ,$instruccion1);
                 $aux++;
             }
             else
             {
-                $instruccion1 = "UPDATE `animales` SET `CROTAL`='$crotal',`NOMBRE`='$nombre',`fechaNacimiento`='$fecha',`IDSEXO`='$sexo',`RAZA`='$raza',`IDVITAL`='$vital',`IDESTADO`='$explotacion' where ID ='$id'";
+                $instruccion1 = "UPDATE `animales` SET `CROTAL`='$crotal',`NOMBRE`='$nombre',`fechaNacimiento`='$fecha',`IDSEXO`='$sexo',`RAZA`='$raza',`IDVITAL`='$vital',`IDESTADO`='$estado',`tiempoExplotacion`='$tExplotacion',`tiempoLactancia`='$tLactancia' where ID ='$id'";
                 
                 mysqli_query ($conexion ,$instruccion1);
                 $aux++;

@@ -58,7 +58,7 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td width="40%">Estado de explotacion </td>
-                        <td width="60%"><select class="borrar form-control" type="text" id="idExpltacion" required></select></td>
+                        <td width="60%"><select class="borrar form-control" type="text" id="idExplotacion" required></select></td>
                     </tr>
                     <tr>
                         <td width="40%">Estado vital </td>
@@ -78,8 +78,8 @@ and open the template in the editor.
     
 <div class="caja pri">
     <h3 class="tLogin">REBAÑO</h3>
-    <button type="button" id="anadir" class="btn btn-info" data-toggle="modal" data-target="#myModal">Añadir</button>
-    <table class="table" id="tabla"></table>
+    <button type="button" id="anadir" class="btn btn-success" data-toggle="modal" data-target="#myModal">Añadir</button>
+    <table class="table table-striped" id="tabla"></table>
     <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
 </div>
 </body> 
