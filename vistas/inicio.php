@@ -12,19 +12,19 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+
                 <?php
     echo(LS());
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
+<script src="../js/inicioS.js"></script>
+
     </head>
     <body>
-        <h1>Inicio de session</h1>
-        <form action="../vistas/acceso.php" method="post">
-            <input type="text" name="correo" placeholder="Correo..."/><br/><br/>
-            <input type="password" name="contraseña" placeholder="Contraseña..."/><br/><br/>
-            <input type="submit" name="enviar" value="Entrar"/>
-        </form>
+        <p id="mensaje"></p>
+        <input type="text" id="email" placeholder="Correo..." required/><br/><br/>
+        <input type="password" id="pass" placeholder="Contraseña..." required/><br/><br/>
+        <input type="button" class="btn btn-success" id="enviar" value="Entrar"/>
         <a href="index.php" type="button" id="Session" class="btn btn-danger">Volver</a>
-       
-        
     </body>
 </html>

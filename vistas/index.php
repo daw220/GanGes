@@ -1,6 +1,8 @@
 <?php
     session_start();
     include "../lib/misfunciones.php";
+
+    session_destroy();
 ?>
 <!DOCTYPE html>
 <html>
