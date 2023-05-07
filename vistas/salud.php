@@ -35,7 +35,10 @@ and open the template in the editor.
                 <table style="width:80%; margin:auto;">
                     <tr>
                         <td width="40%">Crotal</td>
-                        <td width="60%"><select class="borrar form-control" type="text" id="txtCrotal" required></select></td>
+                        <td width="60%">
+                            <select class="borrar form-control" type="text" id="txtCrotal" required></select>
+                            <input class="borrar form-control" type="text" id="txtID" readonly/>
+                        </td>
                     </tr>
                     <tr>
                         <td width="40%">Salud</td>

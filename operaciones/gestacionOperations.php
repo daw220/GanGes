@@ -15,7 +15,7 @@ include ("../lib/fecha.php");
     
     if($accion == 0)//listar(JSON)
     {     
-        $instruccion1 = "select a.ID, a.CROTAL, a.NOMBRE, a.tiempoExplotacion, v.DESCRIPCION from animales a, vital v where a.habilitado ='1' and a.IDVITAL = v.ID and a.IDVITAL IN('3', '4', '5') order by a.IDVITAL asc";
+        $instruccion1 = "select a.ID, a.CROTAL, a.NOMBRE, a.tiempoExplotacion, v.DESCRIPCION from animales a, vital v where a.habilitado ='1' and a.IDVITAL = v.ID and a.IDVITAL = 1 order by a.IDVITAL asc";
         $res1=mysqli_query ($conexion, $instruccion1);
         $nf1= mysqli_num_rows($res1);
         
@@ -52,65 +52,45 @@ include ("../lib/fecha.php");
         $aux = 0;
         $vital = $_REQUEST["vital"];
         $id = $_REQUEST["id"];
-        $tExplotacion = 0;
+        $fecha = date("d/m/Y");
+        $instruccion = "select IDVITAL from animales where ID ='$id'";
+        $res=mysqli_query ($conexion ,$instruccion);  
+        $res2 = mysqli_fetch_array($res);
+        $ide = $res2["IDVITAL"];
 
-        switch ($vital) 
+        $inst = "select CONCAT(CROTAL , ' - CRIA') as nombre from animales where ID = $id";
+        $r=mysqli_query ($conexion ,$inst);  
+        $r1 = mysqli_fetch_array($r);
+        $nombre = $r1["nombre"];
+
+        $inst1 = "select RAZA from animales where ID = $id";
+        $r11=mysqli_query ($conexion ,$inst1);  
+        $r2 = mysqli_fetch_array($r11);
+        $raza = $r2["RAZA"];
+
+        if($vital != $ide)
         {
-            case '1':             
-                $tExplotacion = 270;               
-                break;
-            case '2':               
-                $tExplotacion = 420;
-                break;
-            case '3':                
-                $tExplotacion = 120;
-                break;
-            case '4':              
-                $tExplotacion = 2;
-                break;
-            case '5':               
-                $tExplotacion = 21;
-                break;
-            case '6':               
-                $tExplotacion = 0;
-                break;
-            default:
-                break;
-        }
+            $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default, null, '$nombre','$fecha','2', '$raza', null,'420','2','2', '0','3','1')";
+            mysqli_query ($conexion ,$instruccion1);
+            
+            $instruccion2 = "UPDATE `animales` SET `IDVITAL`='3', `tiempoExplotacion`= '120' where ID ='$id'";
+            mysqli_query ($conexion ,$instruccion2);
+            
+            $aux++;
 
-        $instruccion1 = "UPDATE `animales` SET `IDVITAL`='$vital', `tiempoExplotacion`= '$tExplotacion' where ID ='$id'";
-          
-        mysqli_query ($conexion ,$instruccion1);
-        $aux++;
-         
-        echo ($aux);       
-        
+        }
+        else{
+
+            $aux = -1;
+        }
+ 
+        echo ($aux); 
+  
     }
 
     if($accion == 3)//Listar(vitales de explotacion)
     {
-        $id = $_REQUEST["id"];
-        $instruccion = "select IDVITAL from animales where ID ='$id'";
-        $res=mysqli_query ($conexion ,$instruccion);  
-        $res2 = mysqli_fetch_array($res);
-
-        $ide = $res2["IDVITAL"];
-
-        $instruccion1 = "";
-
-        if($ide == 3)
-        {
-            $instruccion1 = "select * from vital where ID IN('3','4','6')";
-        }
-        if($ide == 4)
-        {
-            $instruccion1 = "select * from vital where ID IN('4','5','6')";
-        }
-        if($ide == 5)
-        {
-            $instruccion1 = "select * from vital where ID IN('1','5','6')";
-        }
-            
+        $instruccion1 = "select * from vital where ID IN('1','2')";
         $res1=mysqli_query ($conexion ,$instruccion1);
         $nf1= mysqli_num_rows($res1);
         

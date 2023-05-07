@@ -42,7 +42,7 @@ include ("../lib/fecha.php");
         {
              $res3 = mysqli_fetch_array($res1);
              
-             array_push($arr, array("ID"=>$res3["ID"], "SALUD"=>$res3["SALUD"]));
+             array_push($arr, array("ID"=>$res3["ID"], "CROTAL"=>$res3["CROTAL"], "SALUD"=>$res3["SALUD"]));
         }      
         echo json_encode($arr);
     }

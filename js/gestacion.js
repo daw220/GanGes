@@ -15,11 +15,12 @@ function anadir() {
 
     $.ajax({
         type: "POST",
-        url: "../operaciones/celoOperations.php",
+        url: "../operaciones/gestacionOperations.php",
         data: form,
         contentType: false,
         processData: false,
         success: function (data) {
+            console.log(data)
             if (data == 1) {                     
                 document.getElementById("btncancelar").click();
                 inicio();
@@ -125,21 +126,14 @@ function tabla(columnas, json) {
 
 function editar(id) {
     borrarInput();
-    $.get("../operaciones/celoOperations.php?accion=3&id="+id, (data) => {
-        console.log(data);
-        select(JSON.parse(data), document.getElementById("idVital"), false);
-    });
-
     if (id != 0){
-        $.get("../operaciones/celoOperations.php?accion=1&id="+id, (data) => {
+        $.get("../operaciones/gestacionOperations.php?accion=1&id="+id, (data) => {
             rellenarEditar(JSON.parse(data));
                 
         });
 
     }
 };
-
-
 
 function rellenarEditar(json) {
     let keys = Object.keys(json[0]);
@@ -162,10 +156,14 @@ function borrarInput() {
 
 function inicio() {
 
-    $.get("../operaciones/celoOperations.php?accion=0",function (data) {
+    $.get("../operaciones/gestacionOperations.php?accion=0",function (data) {
             tabla(["CROTAL","NOMBRE","ESTADO","TIEMPO"], JSON.parse(data));
         }
     );
+
+    $.get("../operaciones/gestacionOperations.php?accion=3", (data) => {
+            select(JSON.parse(data), document.getElementById("idVital"), false);
+    });
     
 };
 

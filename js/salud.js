@@ -92,9 +92,25 @@ function tabla(columnas, json) {
             
             if(j != 0)
             {
-                let td1 = document.createElement("td");
-                td1.innerHTML = json[i][keys[j]];
-                tr.appendChild(td1);
+                if(keys[j] == "SALUD")
+                {
+                    let td1 = document.createElement("td");
+                    td1.setAttribute("data-toggle", "modal");
+                    td1.setAttribute("data-target", "#myModal");
+                    td1.innerHTML="Mostrar Detalles";
+                    tr.appendChild(td1);
+
+                    td1.addEventListener("click", (ev) => {
+                        editar(json[i][keys[0]], 2);
+            
+                    });
+                }
+                else
+                {
+                    let td1 = document.createElement("td");
+                    td1.innerHTML = json[i][keys[j]];
+                    tr.appendChild(td1);
+                }
             }
         }
 
@@ -109,7 +125,7 @@ function tabla(columnas, json) {
         td1.appendChild(btn1);
 
         btn1.addEventListener("click", (ev) => {
-            editar(json[i][keys[0]]);
+            editar(json[i][keys[0]], 3);
 
         });
 
@@ -129,7 +145,7 @@ function tabla(columnas, json) {
         {
             let btn3 = document.getElementById("anadir");
             btn3.addEventListener("click", (ev) => {
-                editar(0);
+                editar(0, 1);
 
             });
         }
@@ -155,7 +171,8 @@ function borrar(id) {
     })
 } 
 
-function editar(id) {
+function editar(id, ac) {
+    menus(ac);
     borrarInput();
     if (id != 0){
         $.get("../operaciones/saludOperations.php?accion=1&id="+id, (data) => {
@@ -166,10 +183,41 @@ function editar(id) {
     }
 };
 
+function menus(accion)
+{
+    switch (accion) {
+
+        case 1:
+            document.getElementById("txtID").style="display: none;";
+            document.getElementById("txtCrotal").style="display: block;";
+            document.getElementById("txtID").disabled = false;
+            document.getElementById("salud").disabled = false; 
+            document.getElementById("btnaceptar").style="display: block;";
+        break;
+        case 2:
+            document.getElementById("txtID").style="display: block;";
+            document.getElementById("txtCrotal").style="display: none;";
+            document.getElementById("txtID").disabled = true;
+            document.getElementById("salud").disabled = true; 
+            document.getElementById("btnaceptar").style="display: none;";
+        break;
+        case 3:
+            document.getElementById("txtID").style="display: block;";
+            document.getElementById("txtCrotal").style="display: none;";
+            document.getElementById("txtID").disabled = true;
+            document.getElementById("salud").disabled = false; 
+            document.getElementById("btnaceptar").style="display: block;";
+        break;
+        default:
+        break;
+    }
+}
+
 function rellenarEditar(json) {
     let keys = Object.keys(json[0]);
+    document.getElementById("txtID").value = json[0][keys[1]];
     document.getElementById("txtCrotal").value = json[0][keys[0]];
-    document.getElementById("salud").value = json[0][keys[1]];
+    document.getElementById("salud").value = json[0][keys[2]];
     
 }
 

@@ -68,7 +68,8 @@ function Registro() {
         data: form,
         contentType: false,
         processData: false,
-        success: function (data) {            
+        success: function (data) {   
+                  
             if (data == 1) {                     
                 document.location.href ="../vistas/inicio.php";
             } else {

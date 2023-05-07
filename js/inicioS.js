@@ -26,7 +26,6 @@ function InicioSesion() {
         contentType: false,
         processData: false,
         success: function (data) {
-            console.log(data);
             if (data == 1) {                     
                 document.location.href ="../vistas/acceso.php";
             } else {
