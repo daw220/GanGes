@@ -16,14 +16,30 @@
 
 </head>
 <body>
-<h2>Acceso</h2>
- <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Prueba</h5>
-    <a href="mPrincipal.php" class="btn btn-primary">Entrar</a>
-  </div>
-</div>
-<a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
-
+<?php
+    if(isset($_SESSION["valido"]))
+    {
+?>
+  
+    <h2>Acceso</h2>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Prueba</h5>
+        <a href="mPrincipal.php" class="btn btn-primary">Entrar</a>
+      </div>
+    </div>
+    <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+ 
+    <?php
+    }
+    else
+    {
+    ?>
+  
+    <p>Acceso denegado</p>
+    <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    <?php
+    }    
+    ?>
 </body>
 </html>

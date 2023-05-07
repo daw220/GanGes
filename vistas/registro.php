@@ -15,21 +15,23 @@ and open the template in the editor.
 <?php
     echo(LS());
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
+<script src="../js/registro.js"></script>
     </head>
     <body>
+
         <h2>Registro</h2>
-        <form action="../vistas/index.php" method="post">
-            <br/>
-            <input type="text" name="DNI"  placeholder="DNI"/><br/><br/>
-            <input type="text" name="nombre"  placeholder="Nombre"/><br/><br/>
-            <input type="text" name="apellido1"  placeholder="Primer Apellido"/><br/><br/>
-            <input type="text" name="apellido2"  placeholder="Segundo Apellido"/><br/><br/>
-            <input type="text" name="telefono"  placeholder="Telefono"/><br/><br/>
-            <input type="text" name="correo"  placeholder="E-mail"/><br/><br/>
-            <input type="password" name="password" placeholder="Contraseña"/><br/><br/>
-            <input type="password" name="passwordMatchInput" placeholder="Repite la contraseña"/><br/><br/>
-            <input type="submit" name="re" value="Registrarse"/>
-        </form>
-    <a href="index.php" type="button" id="Session" class="btn btn-danger">Volver</a>
+        <p id="mensaje"></p>
+        <input type="text" id="DNI"  placeholder="DNI" required/><br/><br/>
+        <input type="text" id="nombre"  placeholder="Nombre" required/><br/><br/>
+        <input type="text" id="apellido1"  placeholder="Primer Apellido" required/><br/><br/>
+        <input type="text" id="apellido2"  placeholder="Segundo Apellido" required/><br/><br/>
+        <input type="text" id="email"  placeholder="E-mail" required/><br/><br/>
+        <input type="password" id="pass1" placeholder="Contraseña" required/><br/><br/>
+        <input type="password" id="pass2" placeholder="Repite la contraseña" required/><br/><br/>
+        <input type="button" id="enviar" class="btn btn-success" value="Registrarse"/>
+        <br/>
+        <a href="index.php" type="button" id="Session" class="btn btn-danger">Principal</a>
+        <a href="inicio.php" type="button" id="Session" class="btn btn-warning">Inicio de sesión</a>
     </body>
 </html>

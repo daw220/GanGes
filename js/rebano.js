@@ -1,19 +1,5 @@
 'use strict'
 
-function obligatorio() {
-    let exito = true;
-    let inputs = document.getElementsByClassName("obligatorio");
-    for (let i = 0; i < inputs.length; i++) {
-        if (inputs[i].value == "") {
-            exito = false;
-            inputs[i].parentNode.classList.add("error");
-        } else {
-            inputs[i].parentNode.classList.remove("error");
-        }
-    }
-    return exito;
-}
-
 function limpiarMensaje() {
 
     setTimeout(function () { document.getElementById("mensaje").innerHTML = ""; }, 5000);
