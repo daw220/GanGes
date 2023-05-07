@@ -10,12 +10,12 @@ function anadir() {
 
     let form = new FormData();
     form.append("id", document.getElementById("txtId").value);
-    form.append("estado", document.getElementById("idEstado").value);
+    form.append("vital", document.getElementById("idVital").value);
     form.append("accion", 2);
 
     $.ajax({
         type: "POST",
-        url: "../operaciones/lactanciaOperations.php",
+        url: "../operaciones/celoOperations.php",
         data: form,
         contentType: false,
         processData: false,
@@ -126,7 +126,7 @@ function tabla(columnas, json) {
 function editar(id) {
     borrarInput();
     if (id != 0){
-        $.get("../operaciones/lactanciaOperations.php?accion=1&id="+id, (data) => {
+        $.get("../operaciones/celoOperations.php?accion=1&id="+id, (data) => {
             rellenarEditar(JSON.parse(data));
                 
         });
@@ -139,7 +139,7 @@ function rellenarEditar(json) {
     document.getElementById("txtId").value = json[0][keys[0]];
     document.getElementById("txtCrotal").value = json[0][keys[1]];
     document.getElementById("txtNom").value = json[0][keys[2]];
-    document.getElementById("idEstado").value = json[0][keys[3]];
+    document.getElementById("idVital").value = json[0][keys[3]];
     
 }
 
@@ -155,14 +155,13 @@ function borrarInput() {
 
 function inicio() {
 
-    $.get("../operaciones/lactanciaOperations.php?accion=0",function (data) {
+    $.get("../operaciones/celoOperations.php?accion=0",function (data) {
             tabla(["CROTAL","NOMBRE","ESTADO","TIEMPO"], JSON.parse(data));
         }
     );
 
-    $.get("../operaciones/lactanciaOperations.php?accion=3", (data) => {
-
-            select(JSON.parse(data), document.getElementById("idEstado"), false);
+    $.get("../operaciones/celoOperations.php?accion=3", (data) => {
+            select(JSON.parse(data), document.getElementById("idVital"), false);
     });
     
 };

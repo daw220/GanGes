@@ -9,13 +9,13 @@ function limpiarMensaje() {
 function anadir() {
 
     let form = new FormData();
-    form.append("id", document.getElementById("txtId").value);
-    form.append("estado", document.getElementById("idEstado").value);
+    form.append("crotal", document.getElementById("txtCrotal").value);
+    form.append("salud", document.getElementById("salud").value);
     form.append("accion", 2);
 
     $.ajax({
         type: "POST",
-        url: "../operaciones/lactanciaOperations.php",
+        url: "../operaciones/saludOperations.php",
         data: form,
         contentType: false,
         processData: false,
@@ -36,8 +36,6 @@ function anadir() {
 }
 
 
-
-
 function select(json, sel, primero) {
     sel.innerHTML = "";
     if (primero == true) {
@@ -51,7 +49,7 @@ function select(json, sel, primero) {
 
         let opt = document.createElement("option");
         opt.value = json[i].ID;
-        opt.innerHTML = " " + json[i].DESCRIPCION;
+        opt.innerHTML = " " + json[i].CROTAL;
         sel.appendChild(opt);
     };
 }
@@ -91,14 +89,13 @@ function tabla(columnas, json) {
         tbody.appendChild(tr);
 
         for (let j = 0; j < keys.length; j++) {
-
+            
             if(j != 0)
             {
                 let td1 = document.createElement("td");
                 td1.innerHTML = json[i][keys[j]];
                 tr.appendChild(td1);
             }
-
         }
 
         let td1 = document.createElement("td");
@@ -111,22 +108,57 @@ function tabla(columnas, json) {
         btn1.innerHTML="Editar";
         td1.appendChild(btn1);
 
-        btn1.addEventListener("click", (ev => {
+        btn1.addEventListener("click", (ev) => {
             editar(json[i][keys[0]]);
 
-        }));
+        });
 
+        let btn2 = document.createElement("button");
+        btn2.classList = "btn btn-danger";
+        btn2.innerHTML="Recuperada";
+        td1.appendChild(btn2)
+
+       
+
+        btn2.addEventListener("click", (ev) => {
+            borrar(json[i][keys[0]]);
+
+        });
+        
+        if(i == 0)
+        {
+            let btn3 = document.getElementById("anadir");
+            btn3.addEventListener("click", (ev) => {
+                editar(0);
+
+            });
+        }
+        
     }
-    
-
-    
 }
 
+function borrar(id) {
+    let form = new FormData();
+    form.append("accion", 4);
+    form.append("ID", id);
+    $.ajax({
+        type: "POST",
+        url: "../operaciones/saludOperations.php",
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            if (data != 0) {
+                inicio();
+            }
+        }
+    })
+} 
 
 function editar(id) {
     borrarInput();
     if (id != 0){
-        $.get("../operaciones/lactanciaOperations.php?accion=1&id="+id, (data) => {
+        $.get("../operaciones/saludOperations.php?accion=1&id="+id, (data) => {
             rellenarEditar(JSON.parse(data));
                 
         });
@@ -136,10 +168,8 @@ function editar(id) {
 
 function rellenarEditar(json) {
     let keys = Object.keys(json[0]);
-    document.getElementById("txtId").value = json[0][keys[0]];
-    document.getElementById("txtCrotal").value = json[0][keys[1]];
-    document.getElementById("txtNom").value = json[0][keys[2]];
-    document.getElementById("idEstado").value = json[0][keys[3]];
+    document.getElementById("txtCrotal").value = json[0][keys[0]];
+    document.getElementById("salud").value = json[0][keys[1]];
     
 }
 
@@ -154,15 +184,13 @@ function borrarInput() {
 
 
 function inicio() {
-
-    $.get("../operaciones/lactanciaOperations.php?accion=0",function (data) {
-            tabla(["CROTAL","NOMBRE","ESTADO","TIEMPO"], JSON.parse(data));
+    $.get("../operaciones/saludOperations.php?accion=0",function (data) {
+           tabla(["CROTAL","NOMBRE","SALUD"], JSON.parse(data));
         }
     );
 
-    $.get("../operaciones/lactanciaOperations.php?accion=3", (data) => {
-
-            select(JSON.parse(data), document.getElementById("idEstado"), false);
+    $.get("../operaciones/saludOperations.php?accion=3", (data) => {
+        select(JSON.parse(data), document.getElementById("txtCrotal"), true);
     });
     
 };
