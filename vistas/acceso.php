@@ -19,11 +19,29 @@
 <?php
     if(isset($_SESSION["valido"]))
     {
+      $conexion = conexion_BD(); 
+      $id= $_SESSION["valido"];               
+      $instruccion1 = "select IDROL from usuario where ID ='$id'";
+      $res1=mysqli_query ($conexion ,$instruccion1);            
+      $res3 = mysqli_fetch_array($res1);
+      $_SESSION["rol"] = $res3["IDROL"];
+           
+       
 ?>
   
     <h2>Acceso</h2>
     <div class="card" style="width: 18rem;">
       <div class="card-body">
+        <h5 class="card-title">Plan Basico</h5>
+        <a href="mPrincipal.php" class="btn btn-primary">Comprar</a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Plan Avanzado</h5>
+        <a href="mPrincipal.php" class="btn btn-primary">Comprar</a>
+      </div>
+        <div class="card-body">
         <h5 class="card-title">Prueba</h5>
         <a href="mPrincipal.php" class="btn btn-primary">Entrar</a>
       </div>

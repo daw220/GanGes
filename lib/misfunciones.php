@@ -46,6 +46,10 @@ function sideBar(){
             <li><a href="../vistas/CVganado.php">Venta</a></li>
         </ul>
       </li>
+      <?php
+      if( $_SESSION["rol"] == 2 )
+      { 
+      ?>
       <li class="dropdown dropdown-submenu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Servicios</a>
         <ul class="dropdown-menu">
@@ -57,6 +61,9 @@ function sideBar(){
         </ul>
       </li>
     </ul>
+       <?php          
+      }
+      ?>
       
       <a href="index.php" type="button" id="Session" class="btn btn-danger">
         <span style="font-size:22pt; ">&#9094;</span>
