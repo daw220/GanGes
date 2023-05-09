@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Bootstrap Sidebar</title>
+  <title>Acceso</title>
 
   <!-- Enlace a archivo de estilos de Bootstrap 4 CSS -->
 <?php
@@ -28,25 +28,52 @@
            
        
 ?>
-  
-    <h2>Acceso</h2>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Plan Basico</h5>
-        <a href="mPrincipal.php" class="btn btn-primary">Comprar</a>
-      </div>
+    <div class="ac1">
+      <div class="row h-100 ">
+        <div class="col-md-4 d-flex justify-content-center align-items-center w-100">
+          <div class="card h-50 w-75 rounded-5">
+              <div class="card-body">
+                <h5 class="card-title">Prueba</h5>
+                <a href="mPrincipal.php" class="btn btn-primary">Entrar</a>
+              </div>
+          </div>
+        </div>
+      </div>  
     </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Plan Avanzado</h5>
-        <a href="mPrincipal.php" class="btn btn-primary">Comprar</a>
+    <div class="caja1 ac2">
+      <div class="row py-4 h-75">
+      <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <div class="card rounded-5" >
+            <img src="../src/calm.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Plan Basico</h5>
+              <a href="mPrincipal.php" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <div class="card rounded-5">
+            <img src="../src/vaca.webp"  class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Plan Avanzado</h5>
+              <a href="mPrincipal.php" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="col-md-2"></div> 
+      <div class="row py-4 h-25">
+        <div class="col-md-5"></div>
+          <div class="col-md-2">
+            <a href="index.php" type="button" id="volver" class="btn btn-danger col-md-12">Volver</a>
+          </div>
+        <div class="col-md-5"></div>
       </div>
-        <div class="card-body">
-        <h5 class="card-title">Prueba</h5>
-        <a href="mPrincipal.php" class="btn btn-primary">Entrar</a>
-      </div>
-    </div>
-    <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    </div>         
+   
+    
  
     <?php
     }

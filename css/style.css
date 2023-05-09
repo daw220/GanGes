@@ -13,6 +13,11 @@ and open the template in the editor.
   box-sizing: border-box;
 }
 
+body{
+  background-image: url("../src/pexels-jesse-zheng-732547.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 /*Landing*/
 .principal{
@@ -48,7 +53,13 @@ and open the template in the editor.
     border-radius: 8px;
     box-shadow: #d3d3d3 2px 2px 10px 10px;
     padding: 30px;
+    background: white;
 }
+
+.caja1 {
+  background: rgba(255, 255, 255, 0.7) ;
+}
+
 .pri{
     width: 80vw;
     position: absolute;
@@ -58,6 +69,34 @@ and open the template in the editor.
     justify-content: center;
     align-items: center;
     flex-flow:column;
+}
+.login{
+  width: 75vw;
+  position: absolute;
+  top: 7%;
+  left: 12.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow:column;
+}
+.ac1{
+  width: 100vw;
+  height: 40vh;
+  position: absolute;
+}
+.ac2{
+  width: 100vw;
+  height: 60vh;
+  position: absolute;
+  top: 40%;
+
+}
+.botones{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow:row;
 }
 /*Titulos*/
 .tLogin{

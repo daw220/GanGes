@@ -31,7 +31,7 @@ function InicioSesion() {
             } else {
                 let mensaje = document.getElementById("mensaje");
                 mensaje.innerHTML = "Inico de sesión no valido";
-                mensaje.classList = "alert alert-danger";
+                mensaje.classList = "alert alert-danger w-75";
                 limpiarMensaje();
                 return;
 

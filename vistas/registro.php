@@ -19,19 +19,30 @@ and open the template in the editor.
 <script src="../js/registro.js"></script>
     </head>
     <body>
-
-        <h2>Registro</h2>
-        <p id="mensaje"></p>
-        <input type="text" id="DNI"  placeholder="DNI" required/><br/><br/>
-        <input type="text" id="nombre"  placeholder="Nombre" required/><br/><br/>
-        <input type="text" id="apellido1"  placeholder="Primer Apellido" required/><br/><br/>
-        <input type="text" id="apellido2"  placeholder="Segundo Apellido" required/><br/><br/>
-        <input type="text" id="email"  placeholder="E-mail" required/><br/><br/>
-        <input type="password" id="pass1" placeholder="Contraseña" required/><br/><br/>
-        <input type="password" id="pass2" placeholder="Repite la contraseña" required/><br/><br/>
-        <input type="button" id="enviar" class="btn btn-success" value="Registrarse"/>
-        <br/>
-        <a href="index.php" type="button" id="Session" class="btn btn-danger">Principal</a>
-        <a href="inicio.php" type="button" id="Session" class="btn btn-warning">Inicio de sesión</a>
+    <div class="caja login">
+        <div class="row w-75">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div style="width:100%; display:flex; justify-content:center;">
+                    <img  src="../src/logo.png" height="150px"/>   
+                 </div>
+                
+                <input type="text" id="DNI" class="form-control"  placeholder="DNI" required/><br/><br/>
+                <input type="text" id="nombre" class="form-control" placeholder="Nombre" required/><br/><br/>
+                <input type="text" id="apellido1" class="form-control" placeholder="Primer Apellido" required/><br/><br/>
+                <input type="text" id="apellido2" class="form-control" placeholder="Segundo Apellido" required/><br/><br/>
+                <input type="text" id="email" class="form-control" placeholder="E-mail" required/><br/><br/>
+                <input type="password" id="pass1" class="form-control" placeholder="Contraseña" required/><br/><br/>
+                <input type="password" id="pass2" class="form-control" placeholder="Repite la contraseña" required/><br/><br/>
+                <div class="botones">
+                    <input type="button" id="enviar" class="btn btn-success" value="Registrarse"/>
+                    <a href="inicio.php" type="button" id="Session" class="btn btn-primary">Inicio de sesión</a>
+                    <a href="index.php" type="button" id="Session" class="btn btn-danger">Principal</a>
+                </div>
+            </div>
+            <div class="col-md-2"></div>            
+        </div>
+        <p id="mensaje" style="display:absolute; left:12.5%;"></p>
+    </div>
     </body>
 </html>

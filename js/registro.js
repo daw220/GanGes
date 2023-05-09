@@ -75,7 +75,7 @@ function Registro() {
             } else {
                 let mensaje = document.getElementById("mensaje");
                 mensaje.innerHTML = "Registro fallido. Intentelo de nuevo.";
-                mensaje.classList = "alert alert-danger";
+                mensaje.classList = "alert alert-danger  w-75";
                 limpiarMensaje();
             }
         }
