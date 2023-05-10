@@ -47,7 +47,7 @@ session_start();
         $PASS = $_REQUEST["PASS"];
         try 
         {
-            $instruccion1 =" INSERT INTO `usuario`(`ID`, `DNI`, `NOMBRE`, `APELLIDO1`, `APELLIDO2`, `EMAIL`, `CONTRASENA`, `IDROL`, `habilitado`) VALUES (default,'$DNI','$NOMBRE','`$AP1','$AP2','$EMAIL','$PASS','3','1')";
+            $instruccion1 =" INSERT INTO `usuario`(`ID`, `DNI`, `NOMBRE`, `APELLIDO1`, `APELLIDO2`, `EMAIL`, `CONTRASENA`, `IDROL`, `habilitado`) VALUES (default,'$DNI','$NOMBRE','$AP1','$AP2','$EMAIL','$PASS','3','1')";
             mysqli_query ($conexion ,$instruccion1);
             $aux++;
         } 

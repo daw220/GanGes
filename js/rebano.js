@@ -38,7 +38,7 @@ function anadir() {
         data: form,
         contentType: false,
         processData: false,
-        success: function (data) {
+        success: function (data) {            
             if (data == 1) {                     
                 document.getElementById("btncancelar").click();
                 inicio();
@@ -209,7 +209,7 @@ function borrarInput() {
 
 function inicio() {
     $.get("../operaciones/rebanoOperations.php?accion=0",function (data) {
-
+        console.log(data)
            tabla(["ID","CROTAL","NOMBRE","FECHA NACIMIENTO","RAZA"], JSON.parse(data));
         }
     );

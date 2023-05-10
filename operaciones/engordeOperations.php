@@ -15,7 +15,7 @@ include ("../lib/fecha.php");
     
     if($accion == 0)//listar(JSON)
     {     
-        $instruccion1 = "select a.ID, a.CROTAL, a.NOMBRE, a.tiempoExplotacion, v.DESCRIPCION from animales a, vital v where a.habilitado ='1' and a.IDVITAL = v.ID and a.IDVITAL = 5 order by a.IDVITAL asc";
+        $instruccion1 = "select a.ID, a.CROTAL, a.NOMBRE, a.tiempoExplotacion, v.DESCRIPCION from animales a, vital v where a.habilitado ='1' and a.IDVITAL = v.ID and a.IDVITAL = 6 order by a.IDVITAL asc";
         $res1=mysqli_query ($conexion, $instruccion1);
         $nf1= mysqli_num_rows($res1);
         
@@ -86,7 +86,7 @@ include ("../lib/fecha.php");
 
     if($accion == 3)//Listar(vitales de explotacion)
     {
-        $instruccion1 = "select * from vital";
+        $instruccion1 = "select * from vital where ID = 6";
         $res1=mysqli_query ($conexion ,$instruccion1);
         $nf1= mysqli_num_rows($res1);
         

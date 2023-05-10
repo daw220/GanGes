@@ -2,6 +2,7 @@
 
 include ("../lib/misfunciones.php");
 include ("../lib/fecha.php");
+session_start();
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +16,8 @@ include ("../lib/fecha.php");
     
     if($accion == 0)//listar(JSON)
     {     
-        $instruccion1 = "select * from animales where habilitado ='1'";
+        $id = $_SESSION["Explo"];
+        $instruccion1 = "select * from animales where habilitado ='1' and IDEXPLOTACION ='$id' ";
         $res1=mysqli_query ($conexion ,$instruccion1);
         $nf1= mysqli_num_rows($res1);
         
@@ -95,7 +97,7 @@ include ("../lib/fecha.php");
 
             if($id == "")
             {
-                $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default,'$crotal','$nombre','`$fecha','$sexo','$raza', null,'$tExplotacion','2','$vital', '$tLactancia','$estado','1')";
+                $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default,'$crotal','$nombre','$fecha','$sexo','$raza', null,'$tExplotacion','3','$vital', '$tLactancia','$estado','1')";
                 mysqli_query ($conexion ,$instruccion1);
                 $aux++;
             }
