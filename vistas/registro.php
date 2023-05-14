@@ -36,8 +36,7 @@ and open the template in the editor.
                 <input type="password" id="pass2" class="form-control" placeholder="Repite la contraseña" required/><br/><br/>
                 <div class="botones">
                     <input type="button" id="enviar" class="btn btn-success" value="Registrarse"/>
-                    <a href="inicio.php" type="button" id="Session" class="btn btn-primary">Inicio de sesión</a>
-                    <a href="index.php" type="button" id="Session" class="btn btn-danger">Principal</a>
+                    <a href="index.php" type="button" id="Session" class="btn btn-danger">Volver</a>
                 </div>
             </div>
             <div class="col-md-2"></div>            
