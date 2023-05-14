@@ -35,4 +35,31 @@ $(document).ready(function() {
       $('.dropdown-submenu a.dropdown-toggle').on('click', function(e) {
         $(this).next('ul').toggle();
       });
+
+      //Alternar menus
+      $("#es").on("click", function(){
+        
+        $("#produccion").removeClass("show");
+        $("#servicios").removeClass("show");
+        $("#explotacion-menu").removeClass("show");
+        
+
+      })
+
+      $("#pr").on("click", function(){
+        
+        $("#explotacion").removeClass("show");
+        $("#servicios").removeClass("show");
+        $("#explotacion-menu").removeClass("show");
+
+      })
+
+      $("#se").on("click", function(){
+        
+        $("#produccion").removeClass("show");
+        $("#explotacion").removeClass("show");
+        $("#explotacion-menu").removeClass("show");
+
+      })
+
     });

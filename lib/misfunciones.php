@@ -15,57 +15,52 @@ function sideBar(){
     </button>
 
   <!-- Sidebar -->
-  <div class="bg-white" id="sidebar">
-  <img src="../src/logo1.png" width="30px">
+<div class="bg-white" id="sidebar">
+  <img src="../src/logo1.png">
   <button type="button" id="cerrar" class="btn btn-outline-danger">
     <span>&#10005;</span>
   </button>
-  <ul class="list-unstyled">
-    <li><a href="./rebano.php" >Rebaño</a></li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Explotación</a>
-      <ul class="dropdown-menu">
-        <li class="dropdown-submenu">
-          <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Estado</a>
-          <ul class="dropdown-menu">
-            <li><a href="../vistas/gestacion.php">Gestación</a></li>
-            <li><a href="../vistas/crecimiento.php">Crecimiento</a></li>
-            <li><a href="../vistas/celo.php">Celo e inseminación</a></li>
-            <li><a href="../vistas/engorde.php">Engorde</a></li>
-          </ul>
-        </li>
-        <li><a href="../vistas/lactacia.php">Lactancia/Secado</a></li>
-        <li><a href="../vistas/salud.php">Salud</a></li>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Producción</a>
-      <ul class="dropdown-menu">
-        <li><a href="../vistas/alimentaria.php">Comida</a></li>
-        <li><a href="../vistas/lactea.php">Láctea</a></li>
-        <li><a href="../vistas/CVganado.php">Venta</a></li>
-      </ul>
-    </li>
-    <?php
-    if( $_SESSION["rol"] == 2 )
-    { 
-    ?>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Servicios</a>
-      <ul class="dropdown-menu">
-        <li><a href="../vistas/estadistica.php">Estadísticas</a></li>
-        <li><a href="../vistas/historico.php">Histórico</a></li>
-        <li><a href="../vistas/fincas.php">Fincas</a></li>
-        <li><a href="../vistas/veterinario.php">Veterinarios cercanos</a></li>
-        <li><a href="../vistas/milAnuncios.php">Compra/Venta</a></li>
-      </ul>
-    </li>
-    <?php
-    }
-    ?>
-  </ul>
+  <div id="principal">
+    <div class="list-group panel">
+      <a href="./mPrincipal.php" class="list-group-item list-group-item-success">Inicio</a>
+      <a href="./rebano.php" class="list-group-item list-group-item-success">Rebaño</a>
+      <a href="#explotacion" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#principal"  id="es">Explotación<i class="fa fa-caret-down"></i></a>
+      <div class="collapse" id="explotacion">
+        <a href="#explotacion-menu" class="list-group-item" id="verde" data-toggle="collapse" data-parent="#explotacion-menu">Estado<i class="fa fa-caret-down"></i></a>
+        <div class="collapse list-group-submenu" id="explotacion-menu">
+          <a href="../vistas/gestacion.php" class="list-group-item" data-parent="#explotacion-menu">Gestación</a>
+          <a href="../vistas/crecimiento.php" class="list-group-item" data-parent="#explotacion-menu">Crecimiento</a>
+          <a href="../vistas/celo.php" class="list-group-item" data-parent="#explotacion-menu">Celo e inseminación</a>
+          <a href="../vistas/engorde.php" class="list-group-item" data-parent="#explotacion-menu">Engorde</a>
+        </div>          
+        <a href="../vistas/lactacia.php" class="list-group-item" data-parent="#explotacion-menu" id="verde">Lactancia/Secado</a>
+        <a href="../vistas/salud.php" class="list-group-item" data-parent="#explotacion-menu" id="verde">Salud</a>
+      </div> 
+      <a href="#produccion" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#principal" id="pr">Producción<i class="fa fa-caret-down"></i></a>
+      <div class="collapse" id="produccion">
+        <a href="../vistas/alimentaria.php" class="list-group-item" id="verde">Comida</a>
+        <a href="../vistas/lactea.php" class="list-group-item" id="verde">Láctea</a>
+        <a href="../vistas/CVganado.php" class="list-group-item" id="verde">Venta</a>
+      </div>     
+      <?php
+      if( $_SESSION["rol"] == 2 )
+      { 
+      ?>
+        <a href="#servicios" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#principal" id="se">Servicios<i class="fa fa-caret-down"></i></a>
+        <div class="collapse" id="servicios">
+          <a href="../vistas/estadistica.php" class="list-group-item" id="verde">Estadísticas</a>
+          <a href="../vistas/historico.php" class="list-group-item" id="verde">Histórico</a>
+          <a href="../vistas/fincas.php" class="list-group-item" id="verde">Fincas</a>
+          <a href="../vistas/veterinario.php" class="list-group-item" id="verde">Veterinarios cercanos</a>
+          <a href="../vistas/milAnuncios.php" class="list-group-item" id="verde">Compra/Venta</a>
+        </div>     
+      <?php
+      }
+      ?>
+    </div>
+  </div>  
   <a href="index.php" type="button" id="Session" class="btn btn-danger">
-    <span style="font-size:22pt; ">&#9094;</span>
+    <span>&#9094;</span>
   </a>
 </div>
 
@@ -79,6 +74,7 @@ function LS(){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">   
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-tzDMeCpJOCw+yzM6GkzyZ1QNhZJxvno1Q2+9XcJywxADaAVBJtL5b5qw5bl+xFZdJr1q3O4J19MfdX9ywV4z4Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
