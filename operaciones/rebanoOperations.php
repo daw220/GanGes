@@ -97,7 +97,7 @@ session_start();
 
             if($id == "")
             {
-                $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default,'$crotal','$nombre','$fecha','$sexo','$raza', null,'$tExplotacion','3','$vital', '$tLactancia','$estado','1')";
+                $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default,'$crotal','$nombre','$fecha','$sexo','$raza', null,'$tExplotacion','2','$vital', '$tLactancia','$estado','1')";
                 mysqli_query ($conexion ,$instruccion1);
                 $aux++;
             }

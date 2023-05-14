@@ -18,6 +18,19 @@ $(document).ready(function() {
         $('body').removeClass('sidebar-active');
       });
 
+      // Cerrar sidebar al hacer clic en la página
+      $(document).on('mousedown', function(ev) {
+
+      // Verifica si el clic se realizó fuera del menú desplegable y del botón de activación
+      if (!$('#sidebar').is(ev.target) && $('#sidebar').has(ev.target).length === 0 &&
+      !$('#sidebarCollapse').is(ev.target) && $('#sidebarCollapse').has(ev.target).length === 0) 
+      {
+        $('#sidebar').removeClass('active');
+        $('body').removeClass('sidebar-active');
+      }
+        
+      });
+
       // Habilitar submenus
       $('.dropdown-submenu a.dropdown-toggle').on('click', function(e) {
         $(this).next('ul').toggle();

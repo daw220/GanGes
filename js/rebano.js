@@ -38,7 +38,7 @@ function anadir() {
         data: form,
         contentType: false,
         processData: false,
-        success: function (data) {            
+        success: function (data) {           
             if (data == 1) {                     
                 document.getElementById("btncancelar").click();
                 inicio();
@@ -149,10 +149,26 @@ function tabla(columnas, json) {
             }));
         }
     }
-    
 
-    
+    $('#tabla').DataTable({
+        lengthMenu: [10, 25, 50],
+        pageLength: 10,
+        language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sSearch": "Buscar:",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            }
+    }});
+
 }
+
 function borrar(id) {
     let form = new FormData();
     form.append("accion", 3);
@@ -209,7 +225,6 @@ function borrarInput() {
 
 function inicio() {
     $.get("../operaciones/rebanoOperations.php?accion=0",function (data) {
-        console.log(data)
            tabla(["ID","CROTAL","NOMBRE","FECHA NACIMIENTO","RAZA"], JSON.parse(data));
         }
     );
