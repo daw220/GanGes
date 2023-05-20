@@ -13,7 +13,7 @@ session_start();
     $accion = $_REQUEST["accion"];
     $id = $_SESSION["valido"];
     
-    if($accion == 0)//Añadir y editar(Numero)
+    if($accion == 0)//Añadir y editar(explotacion)
     {
         $aux =0;
         try

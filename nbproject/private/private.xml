@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/GanGes/vistas/lactacia.php</file>
-            <file>file:/C:/xampp/htdocs/GanGes/css/style.css</file>
-            <file>file:/C:/xampp/htdocs/GanGes/operaciones/lactanciaOperations.php</file>
             <file>file:/C:/xampp/htdocs/GanGes/lib/misfunciones.php</file>
-            <file>file:/C:/xampp/htdocs/GanGes/js/lactancia.js</file>
+            <file>file:/C:/xampp/htdocs/GanGes/vistas/acceso.php</file>
+            <file>file:/C:/xampp/htdocs/GanGes/vistas/registro.php</file>
         </group>
     </open-files>
 </project-private>

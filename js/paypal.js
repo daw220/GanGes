@@ -17,10 +17,6 @@ function inicio(){
             let nombre = document.getElementById("nombre");
             nombre.innerHTML=data;
 
-            let btnb = document.getElementById("botonBasico");
-            btnb.setAttribute("disabled",true);
-            let btna= document.getElementById("botonAvanzado");
-            btna.setAttribute("disabled",true);
 
             $.get("../operaciones/accesoOperations.php?accion=2", (data) => { 
             
@@ -36,9 +32,10 @@ function inicio(){
                         onInit: function(data, actions) {
                             // Deshabilitar el botón de PayPal
                             actions.disable();
-                        }
-                
+                        }                
                       }).render('#botonBasico');
+
+                      
                       paypal.Buttons({
                         style: {
                           layout: 'horizontal',

@@ -2,7 +2,7 @@
 
 include ("../lib/misfunciones.php");
 include ("../lib/fecha.php");
-
+session_start();
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -59,7 +59,15 @@ include ("../lib/fecha.php");
         }
         else
         {
-            $instruccion1 = "UPDATE `animales` SET `IDESTADO`='$explotacion', `tiempoLactancia`='45' where ID ='$id'";
+            if($explotacion == 2)
+            {
+                $instruccion1 = "UPDATE `animales` SET `IDESTADO`='$explotacion', `tiempoLactancia`='45' where ID ='$id'";
+            }
+            else
+            {
+                $instruccion1 = "UPDATE `animales` SET `IDESTADO`='$explotacion', `tiempoLactancia`='0' where ID ='$id'";
+            }
+            
         }
         
         mysqli_query ($conexion ,$instruccion1);

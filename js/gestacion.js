@@ -50,10 +50,26 @@ function select(json, sel, primero) {
 
     for (let i = 0; i < json.length; i++) {
 
-        let opt = document.createElement("option");
-        opt.value = json[i].ID;
-        opt.innerHTML = " " + json[i].DESCRIPCION;
-        sel.appendChild(opt);
+        if(i == 0)
+        {
+            let opt = document.createElement("option");
+            opt.value = json[i].ID;
+            opt.innerHTML = " " + json[i].DESCRIPCION;
+            sel.appendChild(opt);
+        }
+        else
+        {     
+            if(i == 1)
+            {
+                let opt = document.createElement("option");
+                opt.value = json[i].ID;
+                opt.innerHTML =json[i].DESCRIPCION + "/" + json[i+1].DESCRIPCION;
+                sel.appendChild(opt);                
+            }   
+           
+        }
+
+        
     };
 }
 
@@ -176,8 +192,8 @@ function inicio() {
         }
     );
 
-    $.get("../operaciones/gestacionOperations.php?accion=3", (data) => {
-            select(JSON.parse(data), document.getElementById("idVital"), false);
+    $.get("../operaciones/gestacionOperations.php?accion=3", (data) => { 
+        select(JSON.parse(data), document.getElementById("idVital"), false);
     });
     
 };

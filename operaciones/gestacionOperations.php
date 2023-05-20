@@ -2,7 +2,7 @@
 
 include ("../lib/misfunciones.php");
 include ("../lib/fecha.php");
-
+session_start();
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -68,9 +68,11 @@ include ("../lib/fecha.php");
         $r2 = mysqli_fetch_array($r11);
         $raza = $r2["RAZA"];
 
+        $explotacion = $_SESSION["Explo"];
+
         if($vital != $ide)
         {
-            $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default, null, '$nombre','$fecha','2', '$raza', null,'420','2','2', '0','3','1')";
+            $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default, null, '$nombre','$fecha','2', '$raza', null,'420','$explotacion','2','0','3','1')";
             mysqli_query ($conexion ,$instruccion1);
             
             $instruccion2 = "UPDATE `animales` SET `IDVITAL`='3', `tiempoExplotacion`= '120' where ID ='$id'";
@@ -90,7 +92,7 @@ include ("../lib/fecha.php");
 
     if($accion == 3)//Listar(vitales de explotacion)
     {
-        $instruccion1 = "select * from vital where ID IN('1','2')";
+        $instruccion1 = "select * from vital where ID IN('1','2','3')";
         $res1=mysqli_query ($conexion ,$instruccion1);
         $nf1= mysqli_num_rows($res1);
         

@@ -71,17 +71,21 @@ session_start();
                 $tExplotacion = 420;
                 break;
             case '3':                
-                $tExplotacion = 2;
+                $tExplotacion = 120;
                 break;
             case '4':              
-                $tExplotacion = 21;
+                $tExplotacion = 2;
                 break;
             case '5':               
+                $tExplotacion = 21;
+                break;
+            case '6':               
                 $tExplotacion = 0;
                 break;
             default:
                 break;
         }
+
         
         if($estado == 1)
         {
@@ -89,15 +93,23 @@ session_start();
         }
         else
         {
-            $tLactancia = 45;
+            if($estado == 1)
+            {
+                $tLactancia = 45;
+            }
+            else
+            {
+                $tLactancia = 0;
+            }
         }
 
         try
         {
+            $explotacion = $_SESSION["Explo"];
 
             if($id == "")
             {
-                $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default,'$crotal','$nombre','$fecha','$sexo','$raza', null,'$tExplotacion','2','$vital', '$tLactancia','$estado','1')";
+                $instruccion1 = "INSERT INTO `animales`(`ID`, `CROTAL`, `NOMBRE`, `fechaNacimiento`, `IDSEXO`, `RAZA`, `SALUD`, `tiempoExplotacion`, `IDEXPLOTACION`, `IDVITAL`, `tiempoLactancia`, `IDESTADO`, `habilitado`) VALUES (default,'$crotal','$nombre','$fecha','$sexo','$raza', null,'$tExplotacion','$explotacion','$vital', '$tLactancia','$estado','1')";
                 mysqli_query ($conexion ,$instruccion1);
                 $aux++;
             }
