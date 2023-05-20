@@ -1,8 +1,8 @@
 <?php
 
 function conexion_BD(){
-    //$co = mysqli_connect("localhost", "root", "","GanGes")
-    $co = mysqli_connect("localhost", "root", "1234","ganges")
+    $co = mysqli_connect("localhost", "root", "","GanGes")
+    //$co = mysqli_connect("localhost", "root", "1234","ganges")
                 or die ("No se puede conectar con el servidor");
     return $co;
 };
@@ -74,7 +74,6 @@ function LS(){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">   
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-tzDMeCpJOCw+yzM6GkzyZ1QNhZJxvno1Q2+9XcJywxADaAVBJtL5b5qw5bl+xFZdJr1q3O4J19MfdX9ywV4z4Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>

@@ -13,7 +13,8 @@
 <?php
     echo(LS());
 ?>
-
+<script src="https://www.paypal.com/sdk/js?client-id=AUFcvqZLDDRSazztPntd2hKs-L1afkI6-FyNgJaXnOLOtqqP46u7vtdsGLyteYHZxwJG6FTLlmW9Sf2P&currency=EUR"></script>
+<script src="../js/paypal.js"></script>
 </head>
 <body>
 <?php
@@ -29,26 +30,26 @@
        
 ?>
     <div class="ac1">
-      <div class="row h-100 ">
-        <div class="col-md-4 d-flex justify-content-center align-items-center w-100">
-          <div class="card h-50 w-75 rounded-5">
-              <div class="card-body">
-                <h5 class="card-title">Prueba</h5>
-                <a href="mPrincipal.php" class="btn btn-primary">Entrar</a>
-              </div>
+      <div class="row" style="width: 100%;">
+        <div class="col-md-4 d-none" id="explo"  >
+          <div class="card rounded-5"style="width: 100%; height: 100%" >
+            <div class="card-body">
+              <h5 class="card-title" id="nombre" ></h5>
+              <a href="./mPrincipal.php" class="btn btn-primary">Entrar</a>
+            </div>
           </div>
         </div>
       </div>  
     </div>
     <div class="caja1 ac2">
-      <div class="row py-4 h-75">
+      <div class="row py-4" style="width: 100%;">
       <div class="col-md-2"></div>
         <div class="col-md-3">
           <div class="card rounded-5" >
             <img src="../src/calm.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Plan Basico</h5>
-              <a href="mPrincipal.php" class="btn btn-primary">Comprar</a>
+              <div id="botonBasico"></div>
             </div>
           </div>
         </div>
@@ -58,13 +59,12 @@
             <img src="../src/vaca.webp"  class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Plan Avanzado</h5>
-              <a href="mPrincipal.php" class="btn btn-primary">Comprar</a>
+              <div id="botonAvanzado"></div>
             </div>
           </div>
         </div>
       </div> 
-      <div class="col-md-2"></div> 
-      <div class="row py-4 h-25">
+        <div class="row py-4" style="width: 100%;">
         <div class="col-md-5"></div>
           <div class="col-md-2">
             <a href="index.php" type="button" id="volver" class="btn btn-danger col-md-12">Volver</a>
