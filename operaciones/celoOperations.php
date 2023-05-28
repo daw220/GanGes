@@ -15,7 +15,7 @@ session_start();
     
     if($accion == 0)//listar(JSON)
     {     
-        $instruccion1 = "select a.ID, a.CROTAL, a.NOMBRE, a.tiempoExplotacion, v.DESCRIPCION from animales a, vital v where a.habilitado ='1' and a.IDVITAL = v.ID and a.IDVITAL IN('3', '4', '5') order by a.IDVITAL asc";
+        $instruccion1 = "select a.ID, a.CROTAL, a.NOMBRE, a.tiempoExplotacion, v.DESCRIPCION, a.IDVITAL from animales a, vital v where a.habilitado ='1' and a.IDVITAL = v.ID and a.IDVITAL IN('3', '4', '5') order by a.IDVITAL asc";
         $res1=mysqli_query ($conexion, $instruccion1);
         $nf1= mysqli_num_rows($res1);
         
@@ -24,8 +24,25 @@ session_start();
         for ($i=0; $i<$nf1; $i++)
         {
             $res3 = mysqli_fetch_array($res1);
+            $tt ="";
+
+            switch ($res3["IDVITAL"]) {
+                case '3':                
+                    $tt = 120;
+                    break;
+                case '4':              
+                    $tt = 2;
+                    break;
+                case '5':               
+                    $tt = 21;
+                    break;             
+                default:
+                    $tt = 0;
+                    break;
+            }
+
             
-            array_push($arr, array("ID"=>$res3["ID"], "CROTAL"=>$res3["CROTAL"], "NOMBRE"=>$res3["NOMBRE"], "vital"=>$res3["DESCRIPCION"], "tiempoExplotacion"=>$res3["tiempoExplotacion"]));
+            array_push($arr, array("ID"=>$res3["ID"], "CROTAL"=>$res3["CROTAL"], "NOMBRE"=>$res3["NOMBRE"], "vital"=>$res3["DESCRIPCION"], "tiempoExplotacion"=>$res3["tiempoExplotacion"],"tiempoExplotacionT"=>$tt));
         }      
             echo json_encode($arr);
     }

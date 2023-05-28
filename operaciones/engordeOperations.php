@@ -25,7 +25,7 @@ session_start();
         {
             $res3 = mysqli_fetch_array($res1);
             
-            array_push($arr, array("ID"=>$res3["ID"], "CROTAL"=>$res3["CROTAL"], "NOMBRE"=>$res3["NOMBRE"], "vital"=>$res3["DESCRIPCION"], "tiempoExplotacion"=>$res3["tiempoExplotacion"]));
+            array_push($arr, array("ID"=>$res3["ID"], "CROTAL"=>$res3["CROTAL"], "NOMBRE"=>$res3["NOMBRE"], "vital"=>$res3["DESCRIPCION"], "tiempoExplotacion"=>$res3["tiempoExplotacion"], "tiempoExplotacionT"=>"90"));
         }      
             echo json_encode($arr);
     }

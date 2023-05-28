@@ -93,7 +93,7 @@ session_start();
         }
         else
         {
-            if($estado == 1)
+            if($estado == 2)
             {
                 $tLactancia = 45;
             }

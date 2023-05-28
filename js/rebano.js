@@ -40,8 +40,7 @@ function anadir() {
         processData: false,
         success: function (data) {           
             if (data == 1) {                     
-                document.getElementById("btncancelar").click();
-                inicio();
+                location.reload();
             } else {
                 if (data == -1) {
                     let mensaje = document.getElementById("mensaje");
@@ -181,7 +180,7 @@ function borrar(id) {
         processData: false,
         success: function (data) {
             if (data != 0) {
-                inicio();
+                location.reload();
             }
         }
     })

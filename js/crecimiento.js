@@ -21,8 +21,7 @@ function anadir() {
         processData: false,
         success: function (data) {
             if (data == 1) {                     
-                document.getElementById("btncancelar").click();
-                inicio();
+                location.reload();
             } else {
                 if (data == -1) {
                     let mensaje = document.getElementById("mensaje");
@@ -92,11 +91,39 @@ function tabla(columnas, json) {
 
         for (let j = 0; j < keys.length; j++) {
 
-            if(j != 0)
+            
+            if(j != 0 && j!=4)
             {
                 let td1 = document.createElement("td");
                 td1.innerHTML = json[i][keys[j]];
                 tr.appendChild(td1);
+            }
+            if(j == 4)
+            {
+                let td1 = document.createElement("td");
+                tr.appendChild(td1);
+
+                let div = document.createElement("div");
+                div.classList.add("progress")
+                div.style=`background-color:#8affa5;`
+                
+                td1.appendChild(div);
+
+                let div1 = document.createElement("div");
+                div1.classList.add("progress-bar");
+                div1.role="progressbar";
+                div1.style=`width: ${((parseInt(json[i][keys[j]])/parseInt(json[i][keys[j+1]]))*100)}%;background-color:#28a745;`
+                div1.ariaValueNow=`${parseInt(json[i][keys[j]])}`
+                div1.ariaValueMin=`${0}`
+                div1.ariaValueMax=`${parseInt(json[i][keys[j+1]])}`
+                div.appendChild(div1);
+                
+                let span = document.createElement("span");
+                span.innerHTML=`Quedan ${parseInt(json[i][keys[j]])} dias.`
+                td1.appendChild(span);
+
+
+                j++;
             }
 
         }
