@@ -1,17 +1,9 @@
 'use strict'
 
-function limpiarMensaje() {
-
-    setTimeout(function () { 
-        document.getElementById("mensaje").innerHTML = "";  
-        document.getElementById("mensaje").classList = ""; 
-    }, 5000);
-}
-
-
 function Registro() {
 
     let form = new FormData();
+    form.append("ID", document.getElementById("id").value);
     form.append("NOMBRE", document.getElementById("nombre").value);
     form.append("AP1", document.getElementById("apellido1").value);
     form.append("AP2", document.getElementById("apellido2").value);
@@ -22,7 +14,8 @@ function Registro() {
     {
         form.append("DNI", document.getElementById("DNI").value);
     }
-    else{
+    else
+    {
         let mensaje = document.getElementById("mensaje");
         mensaje.innerHTML = 'El DNI o NIE debe tener exactamente 9 caracteres.';
         mensaje.classList = "alert alert-danger";
@@ -43,28 +36,11 @@ function Registro() {
         return;
     }
 
-
-    if(document.getElementById("pass1").value == document.getElementById("pass2").value)
-    {
-        let contra= document.getElementById("pass1").value;
-        const sha256 = new sjcl.hash.sha256();
-        sha256.update(contra);
-        var contraCifrada = sjcl.codec.hex.fromBits(sha256.finalize());
-        form.append("PASS", contraCifrada);
-    }
-    else{
-        let mensaje = document.getElementById("mensaje");
-        mensaje.innerHTML = "Las contraseñas deben coincidir.";
-        mensaje.classList = "alert alert-danger";
-        limpiarMensaje();
-        return;
-    }
-        
-    form.append("accion",2);
+    form.append("accion", 1);
 
     $.ajax({
         type: "POST",
-        url: "../operaciones/SessionOperations.php",
+        url: "../operaciones/mPrincipalOperations.php",
         data: form,
         contentType: false,
         processData: false,
@@ -74,7 +50,7 @@ function Registro() {
                 document.location.href ="../vistas/inicio.php";
             } else {
                 let mensaje = document.getElementById("mensaje");
-                mensaje.innerHTML = "Registro fallido. Intentelo de nuevo.";
+                mensaje.innerHTML = "Edicion fallida. Intentelo de nuevo.";
                 mensaje.classList = "alert alert-danger  w-75";
                 limpiarMensaje();
             }
@@ -83,11 +59,26 @@ function Registro() {
 }
 
 
-function inicio() {
+function input(json)
+{
+    let keys = Object.keys(json[0]);
+    document.getElementById("id").value = json[0][keys[0]];
+    document.getElementById("DNI").value = json[0][keys[1]];
+    document.getElementById("nombre").value = json[0][keys[2]];
+    document.getElementById("apellido1").value = json[0][keys[3]];  
+    document.getElementById("apellido2").value = json[0][keys[4]];  
+    document.getElementById("email").value = json[0][keys[5]]; 
+}
 
-   let btn = document.getElementById("enviar");
-   btn.addEventListener("click",()=>{ Registro()})
-    
-};
+
+function inicio()
+{
+    $.get("../operaciones/mPrincipalOperations.php?accion=0",function (data) {
+        input(JSON.parse(data));
+    });
+ 
+    let btn = document.getElementById("enviar");
+    btn.addEventListener("click",()=>{ Registro()})
+}
 
 window.onload = inicio;

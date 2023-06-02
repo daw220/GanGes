@@ -12,7 +12,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <script src="../js/rebano.js"></script>
+        <script src="../js/lactea.js"></script>
 <?php
     echo(LS());
 ?>
@@ -33,36 +33,22 @@ and open the template in the editor.
             </div>
             <div class="modal-body">
                 <table style="width:80%; margin:auto;">
-                    <tr>
-                        <td width="40%">ID</td>
-                        <td width="60%"><input class="borrar form-control" type="text" id="txtID" readonly /></td>
+                    <input class="borrar form-control" type="hidden" id="id"/>
+                    <tr id="month">
+                        <td width="40%">Mes</td>
+                        <td width="60%"><input class="borrar form-control" type="text" id="mes" required/></td>
                     </tr>
-                          <td width="40%">Crotal</td>
-                          <td width="60%"><input class="borrar form-control" type="text" id="txtCrotal" required /></td>
+                    <tr id="cant">
+                        <td width="40%">Cantidad</td>
+                        <td width="60%"><input class="borrar form-control" type="text" id="cantidad" required/></td>
                     </tr>
-                    <tr>
-                        <td width="40%">Nombre </td>
-                        <td width="60%"><input class="borrar form-control" type="text" id="txtNom" required /></td>
+                    <tr id="pre">
+                        <td width="40%">Precio (euros)</td>
+                        <td width="60%"><input class="borrar form-control" type="text" id="precio" required/></td>
                     </tr>
-                    <tr>
-                        <td width="40%">Fecha de nacimiento</td>
-                        <td width="60%"><input class="borrar form-control" type="text" id="fecha" required/></td>
-                    </tr>
-                    <tr>
-                        <td width="40%">Sexo </td>
-                        <td width="60%"><select class="borrar form-control" type="text" id="idSexo" required></select></td>
-                    </tr>
-                    <tr>
-                        <td width="40%">Raza </td>
-                        <td width="60%"><input class="borrar form-control" type="text" id="txtRaza" required/></td>
-                    </tr>
-                    <tr>
-                        <td width="40%">Estado de explotacion </td>
-                        <td width="60%"><select class="borrar form-control" type="text" id="idExpltacion" required></select></td>
-                    </tr>
-                    <tr>
-                        <td width="40%">Estado vital </td>
-                        <td width="60%"><select class="borrar form-control" type="text" id="idVital" required></select></td>
+                    <tr id="gana">
+                        <td width="40%">Ganancias</td>
+                        <td width="60%"><input class="borrar form-control" type="text" id="ganancias" readonly/></td>
                     </tr>
                 </table>
                 <p id="mensaje"></p>
@@ -77,9 +63,9 @@ and open the template in the editor.
 </div>
     
 <div class="caja pri">
-    <h3 class="tLogin">LACTEA</h3>
-    <button type="button" id="anadir" class="btn btn-info" data-toggle="modal" data-target="#myModal">Añadir</button>
-    <table class="table" id="tabla"></table>
+    <h3 class="tLogin">PRODUCCIÓN LÁCTEA</h3>
+    <button type="button" id="anadir" class="btn btn-success" data-toggle="modal" data-target="#myModal">Añadir</button>
+    <table class="table table-striped" id="tabla"></table>
     <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
 </div>
 </body> 

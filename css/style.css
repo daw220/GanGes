@@ -331,4 +331,6 @@ body{
 
 #tabla{
   width: 75vw;
+  height: 50vh;
+  max-height: 50vh;
 }

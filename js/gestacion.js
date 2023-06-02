@@ -20,7 +20,6 @@ function anadir() {
         contentType: false,
         processData: false,
         success: function (data) {
-            console.log(data)
             if (data == 1) {                     
                 location.reload();
             } else {

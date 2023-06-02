@@ -10,16 +10,15 @@ function anadir() {
 
     let form = new FormData();
     form.append("id", document.getElementById("id").value);
-    form.append("nombre", document.getElementById("nombre").value);
-    form.append("descripcion", document.getElementById("descripcion").value);
+    form.append("mes", document.getElementById("mes").value);
     form.append("cantidad", document.getElementById("cantidad").value);
-    form.append("cantidadr", document.getElementById("cantidadr").value);
     form.append("precio", document.getElementById("precio").value);
+    form.append("ganancias", document.getElementById("ganancias").value);
     form.append("accion", 2);
 
     $.ajax({
         type: "POST",
-        url: "../operaciones/comidaOperations.php",
+        url: "../operaciones/lacteaOperations.php",
         data: form,
         contentType: false,
         processData: false,
@@ -33,14 +32,6 @@ function anadir() {
                     mensaje.innerHTML = "Ya existe este registro";
                     mensaje.style = "color:red;";
                     limpiarMensaje();
-                }
-                else {
-                    if (data == 2) {
-                        let mensaje = document.getElementById("mensaje");
-                        mensaje.innerHTML = "La cantidad introducida es mayor de la cantidad que queda";
-                        mensaje.style = "color:red;";
-                        limpiarMensaje();
-                    }
                 }
             }
         }
@@ -101,39 +92,21 @@ function tabla(columnas, json) {
         tbody.appendChild(tr);
 
         for (let j = 0; j < keys.length; j++) {
-            
-            if(j != 0 && j!=4)
+
+            if(j != 0 && j != 4 && j != 3)
             {
                 let td1 = document.createElement("td");
                 td1.innerHTML = json[i][keys[j]];
                 tr.appendChild(td1);
             }
-            if(j == 4)
+
+            if(j == 3 || j == 4)
             {
                 let td1 = document.createElement("td");
+                td1.innerHTML=`${json[i][keys[j]]}€`;
                 tr.appendChild(td1);
-
-                let div = document.createElement("div");
-                div.classList.add("progress")
-                div.style="background-color:#8affa5";
-
-                td1.appendChild(div);
-
-                let div1 = document.createElement("div");
-                div1.classList.add("progress-bar");
-                div1.role="progressbar";
-                div1.style=`width: ${((parseInt(json[i][keys[j+1]])/parseInt(json[i][keys[j]]))*100)}%;background-color:#28a745`;
-                div1.ariaValueNow=`${parseInt(json[i][keys[j+1]])}`;
-                div1.ariaValueMin=`${0}`;
-                div1.ariaValueMax=`${parseInt(json[i][keys[j]])}`;
-                div.appendChild(div1);
-
-                let span = document.createElement("span");
-                span.innerHTML=`Quedan ${parseInt(json[i][keys[j+1]])} Kilos.`;  
-                td1.appendChild(span);
-
-                j++;
             }
+            
         }
 
         let td1 = document.createElement("td");
@@ -153,7 +126,7 @@ function tabla(columnas, json) {
 
         let btn2 = document.createElement("button");
         btn2.classList = "btn btn-danger";
-        btn2.innerHTML="Borrar";
+        btn2.innerHTML="Eliminar";
         td1.appendChild(btn2)
 
        
@@ -199,7 +172,7 @@ function borrar(id) {
     form.append("id", id);
     $.ajax({
         type: "POST",
-        url: "../operaciones/comidaOperations.php",
+        url: "../operaciones/lacteaOperations.php",
         data: form,
         contentType: false,
         processData: false,
@@ -215,7 +188,7 @@ function editar(id, ac) {
     menus(ac);
     borrarInput();
     if (id != 0){
-        $.get("../operaciones/comidaOperations.php?accion=1&id="+id, (data) => {
+        $.get("../operaciones/lacteaOperations.php?accion=1&id="+id, (data) => {
             rellenarEditar(JSON.parse(data));
                 
         });
@@ -228,18 +201,18 @@ function menus(accion)
     switch (accion) {
 
         case 1:
-            document.getElementById("nombre").disabled= false;
-            document.getElementById("des").style="";
-            document.getElementById("cantidad").disabled = false; 
+            document.getElementById("month").disabled= false;
+            document.getElementById("cant").style="";
+            document.getElementById("pre").disabled = false; 
             document.getElementById("pre").style="";
-            document.getElementById("cr").style="display: none;";
+            document.getElementById("gana").disabled = true; 
+            document.getElementById("gana").style="display: none;";
         break;
         case 2:
-            document.getElementById("nombre").disabled= true;
-            document.getElementById("des").style="display: none;";
-            document.getElementById("cantidad").disabled = true; 
-            document.getElementById("pre").style="display: none;";
-            document.getElementById("cr").style="";
+            document.getElementById("cant").style="";
+            document.getElementById("pre").style="";
+            document.getElementById("gana").disabled = true; 
+            document.getElementById("gana").style="";
         break;
         default:
         break;
@@ -249,18 +222,10 @@ function menus(accion)
 function rellenarEditar(json) {
     let keys = Object.keys(json[0]);
     document.getElementById("id").value = json[0][keys[0]];
-    document.getElementById("nombre").value = json[0][keys[1]];
+    document.getElementById("mes").value = json[0][keys[1]];
     document.getElementById("cantidad").value = json[0][keys[2]];
-    
-    if(parseInt(json[0][keys[2]]) <= 0)
-    {
-        document.getElementById("cantidadr").disabled = true;
-    }
-    else
-    {
-        document.getElementById("cantidadr").disabled = false;
-    }
-    
+    document.getElementById("precio").value = json[0][keys[3]];
+    document.getElementById("ganancias").value = json[0][keys[4]];
     
 }
 
@@ -275,11 +240,22 @@ function borrarInput() {
 
 
 function inicio() {
-    $.get("../operaciones/comidaOperations.php?accion=0",function (data) {
-           tabla(["NOMBRE","DESCRIPCION","PRECIO","CANTIDAD"], JSON.parse(data));
+    $.get("../operaciones/lacteaOperations.php?accion=0",function (data) {
+           tabla(["MES","CANTIDAD","PRECIO","GANANCIAS"], JSON.parse(data));
         }
     );
     
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+
+    $("#mes").datepicker(
+        {
+            dateFormat: "mm/yy",
+            showButtonPanel: true,
+            firstDay: 1,
+            changeMonth: true,
+            changeYear: true,  
+        }
+    );
 };
 
 window.onload = inicio;

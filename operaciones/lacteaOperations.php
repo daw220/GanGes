@@ -12,12 +12,10 @@ session_start();
 
     $accion = $_REQUEST["accion"];
     
-    
-
     if($accion == 0)//listar(JSON)
     {     
         $explotacion = $_SESSION["Explo"];
-        $instruccion1 = "select * from comida where IDEXPLOTACION = '$explotacion'";
+        $instruccion1 = "select * from leche where IDEXPLOTACION = '$explotacion'";
         $res1=mysqli_query ($conexion ,$instruccion1);
         $nf1= mysqli_num_rows($res1);
         
@@ -27,7 +25,7 @@ session_start();
         {
             $res3 = mysqli_fetch_array($res1);
              
-            array_push($arr, array("ID"=>$res3["ID"], "NOMBRE"=>$res3["NOMBRE"], "DESCRIPCION"=>$res3["DESCRIPCION"],"PRECIO"=>$res3["PRECIO"],"CANTIDADTOTAL"=>$res3["CANTIDADTOTAL"],"CANTIDADRESTANTE"=>$res3["CANTIDADRESTANTE"]));
+            array_push($arr, array("ID"=>$res3["ID"], "MES"=>$res3["MES"], "CANTIDAD"=>$res3["CANTIDAD"],"PRECIO"=>$res3["PRECIO"],"GANANCIAS"=>$res3["GANANCIAS"]));
         }      
             echo json_encode($arr);
     }
@@ -35,7 +33,7 @@ session_start();
     if($accion == 1)//Recuperar datos para edicion(JSON)
     {
         $id = $_REQUEST["id"];
-        $instruccion1 = "select * from comida where ID ='$id'";
+        $instruccion1 = "select * from leche where ID ='$id'";
         $res1=mysqli_query ($conexion ,$instruccion1);
         $nf1= mysqli_num_rows($res1);
         
@@ -45,41 +43,28 @@ session_start();
         {
              $res3 = mysqli_fetch_array($res1);
              
-             array_push($arr, array("ID"=>$res3["ID"], "NOMBRE"=>$res3["NOMBRE"], "CANTIDADRESTANTE"=>$res3["CANTIDADRESTANTE"]));
+             array_push($arr, array("ID"=>$res3["ID"], "MES"=>$res3["MES"], "CANTIDAD"=>$res3["CANTIDAD"],"PRECIO"=>$res3["PRECIO"],"GANANCIAS"=>$res3["GANANCIAS"]));
         }      
         echo json_encode($arr);
     }
     if($accion == 2) //editar(Numero)
     {
         $id = $_REQUEST["id"];
-        $des = $_REQUEST["descripcion"];
-        $nombre = $_REQUEST["nombre"];
+        $mes = $_REQUEST["mes"];
+        $cantidad = $_REQUEST["cantidad"];
         $precio = $_REQUEST["precio"];
-        $cant = $_REQUEST["cantidadr"];
-        $cant1 = $_REQUEST["cantidad"];
+        $ganancias = $_REQUEST["cantidad"] * $_REQUEST["precio"];
         $explotacion = $_SESSION["Explo"];
         $aux = 0;
-        $instruccion1 = "SELECT * from comida";
+        $instruccion1 = "";
      
         if($id == "")
         {
-            $instruccion1 = "INSERT INTO comida VALUES (default, '$nombre', '$des', '$cant1', '$cant1', '$precio', '$explotacion')";
+            $instruccion1 = "INSERT INTO leche VALUES (default, '$mes', '$cantidad', '$precio', '$ganancias', '$explotacion')";
         }
         else
         {
-            $instruccion2 = "SELECT CANTIDADRESTANTE from comida where ID = '$id'";
-            $res1 = mysqli_query ($conexion, $instruccion2);
-            $res3 = mysqli_fetch_array($res1);
-
-            if($res3['CANTIDADRESTANTE'] >= $cant)
-            {
-                $instruccion1 = "UPDATE `comida` SET `CANTIDADRESTANTE` = CANTIDADRESTANTE - '$cant' where ID = '$id'";
-            }
-            else
-            {
-                $aux++;
-            }
-       
+            $instruccion1 = "UPDATE `leche` SET `MES` = '$mes', `CANTIDAD`='$cantidad',`PRECIO`='$precio',`GANANCIAS`='$ganancias' where ID ='$id'";
         }
 
         mysqli_query ($conexion ,$instruccion1);
@@ -94,7 +79,7 @@ session_start();
         $aux = 0;
         $id = $_REQUEST["id"];
      
-        $instruccion1 = "DELETE from `comida` where ID = '$id'";
+        $instruccion1 = "DELETE from `leche` where ID = '$id'";
 
         mysqli_query ($conexion ,$instruccion1);
         $aux++;

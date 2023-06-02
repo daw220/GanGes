@@ -19,7 +19,7 @@ and open the template in the editor.
          <?php
     echo(LS());
 ?>
-  
+  <script src="../js/mPrincipal.js"></script>
 </head>
 <body>
     <?php
@@ -32,16 +32,42 @@ and open the template in the editor.
         $res3 = mysqli_fetch_array($res1);
         $_SESSION["Explo"] = $res3["ID"];
         echo(sideBar());
+        ?>  
+
+        <div class="caja pri" style="max-height: 70vh; height: 70vh;">
+            <div class="row w-75">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h2 class="tLogin mb-5">PERFIL</h2>
+                    <input type="hidden" id="id"/>
+                    <input type="text" id="DNI" class="form-control mb-5"  placeholder="DNI" required/>
+                    <input type="text" id="nombre" class="form-control mb-5" placeholder="Nombre" required/>
+                    <input type="text" id="apellido1" class="form-control mb-5" placeholder="Primer Apellido" required/>
+                    <input type="text" id="apellido2" class="form-control mb-5" placeholder="Segundo Apellido" required/>
+                    <input type="text" id="email" class="form-control mb-5" placeholder="E-mail" required/>
+                </div>
+                <div class="col-md-2"></div>            
+            </div>
+            <div class="row w-75">
+                <div class="col-md-12">
+                    <div class="botones">
+                        <input type="button" id="enviar" class="btn btn-success mb-5" value="EDITAR"/>
+                    </div>
+                </div>      
+            </div>
+        </div>            
+        <?php
     }
     else
     {
     ?>  
-        <p>Acceso denegado</p>
+    <div class="caja pri">
+        <p class="text-uppercase text-center">Acceso denegado</p>
         <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    </div>
     <?php
     }    
     ?>  
-    <h2>Menu principal</h2>
 </body>
 </html>
 

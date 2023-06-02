@@ -1,8 +1,8 @@
 <?php
 
 function conexion_BD(){
-    $co = mysqli_connect("localhost", "root", "","GanGes")
-    //$co = mysqli_connect("localhost", "root", "1234","ganges")
+    //$co = mysqli_connect("localhost", "root", "","GanGes")
+    $co = mysqli_connect("localhost", "root", "1234","ganges")
                 or die ("No se puede conectar con el servidor");
     return $co;
 };
@@ -79,6 +79,7 @@ function LS(){
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="../js/nav.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+    <script scr="../js/jquery-ui-i18n.min.js"></script>
     <?php
 }

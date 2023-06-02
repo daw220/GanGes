@@ -15,7 +15,7 @@ session_start();
     
     if($accion == 0)//listar(JSON)
     {     
-        $instruccion1 = "select * from animales where SALUD IS NOT NULL";
+        $instruccion1 = "select * from animales where SALUD IS NOT NULL and habilitado = '1'";
         $res1=mysqli_query ($conexion ,$instruccion1);
         $nf1= mysqli_num_rows($res1);
         
