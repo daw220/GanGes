@@ -13,14 +13,26 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
         <?php
-    echo(LS());
-?>
-    </head>
-    <body>
-              <?php
-    echo(sideBar());
+    if(isset($_SESSION["valido"]))
+    {        
+        echo(sideBar());
+        ?> 
+        <div class="caja pri">
+            <h2>Historico</h2>
+            <h2>WIP</h2>
+            <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+        </div>
+        <?php
+    }
+    else
+    {
     ?>  
-        <h2>HISTORICO</h2>
-        <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    <div class="caja pri">
+        <p class="text-uppercase text-center">Acceso denegado</p>
+        <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    </div>
+    <?php
+    }    
+    ?> 
     </body>
 </html>

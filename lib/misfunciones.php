@@ -1,8 +1,8 @@
 <?php
 
 function conexion_BD(){
-    //$co = mysqli_connect("localhost", "root", "","GanGes")
-    $co = mysqli_connect("localhost", "root", "1234","ganges")
+    $co = mysqli_connect("localhost", "root", "","GanGes")
+    //$co = mysqli_connect("localhost", "root", "1234","ganges")
                 or die ("No se puede conectar con el servidor");
     return $co;
 };

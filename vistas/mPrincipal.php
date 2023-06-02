@@ -32,30 +32,71 @@ and open the template in the editor.
         $res3 = mysqli_fetch_array($res1);
         $_SESSION["Explo"] = $res3["ID"];
         echo(sideBar());
-        ?>  
-
+        ?>
         <div class="caja pri" style="max-height: 70vh; height: 70vh;">
             <div class="row w-75">
-                <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <h2 class="tLogin mb-5">PERFIL</h2>
-                    <input type="hidden" id="id"/>
-                    <input type="text" id="DNI" class="form-control mb-5"  placeholder="DNI" required/>
-                    <input type="text" id="nombre" class="form-control mb-5" placeholder="Nombre" required/>
-                    <input type="text" id="apellido1" class="form-control mb-5" placeholder="Primer Apellido" required/>
-                    <input type="text" id="apellido2" class="form-control mb-5" placeholder="Segundo Apellido" required/>
-                    <input type="text" id="email" class="form-control mb-5" placeholder="E-mail" required/>
-                </div>
-                <div class="col-md-2"></div>            
-            </div>
-            <div class="row w-75">
-                <div class="col-md-12">
-                    <div class="botones">
-                        <input type="button" id="enviar" class="btn btn-success mb-5" value="EDITAR"/>
+                    <div id="car" class="carousel slide w-50 m-auto" data-bs-ride="carousel">
+                        <ol class="carousel-indicators">
+                        <li data-bs-target="#car" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#car" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#car" data-bs-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="../src/leche.jpg" alt="First slide">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>GANGES</h5>
+                            <p>AYUDAMOS A L@S GANADER@S DESDE LA RAÍZ.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="../src/va.gif" alt="Second slide">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>TODO TIPO DE GESTIONES</h5>
+                            <p>GANADERA, ADMINISTRATIVA, VETERINARIA, ETC.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="../src/ter.gif" alt="Third slide">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>MÁXIMA CERCANÍA</h5>
+                            <p>DE GANADEROS PARA GANADEROS.</p>
+                            </div>
+                        </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#car" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#car" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                        </a>
                     </div>
-                </div>      
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="tLogin mb-5">PERFIL</h2>
+                            <input type="hidden" id="id"/>
+                            <input type="text" id="DNI" class="form-control mb-5"  placeholder="DNI" required/>
+                            <input type="text" id="nombre" class="form-control mb-5" placeholder="Nombre" required/>
+                            <input type="text" id="apellido1" class="form-control mb-5" placeholder="Primer Apellido" required/>
+                            <input type="text" id="apellido2" class="form-control mb-5" placeholder="Segundo Apellido" required/>
+                            <input type="text" id="email" class="form-control mb-5" placeholder="E-mail" required/>
+                        </div>           
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="botones">
+                                <input type="button" id="enviar" class="btn btn-success mb-5" value="EDITAR"/>
+                            </div>
+                        </div>      
+                    </div>
+                </div>            
             </div>
-        </div>            
+        </div>             
         <?php
     }
     else
@@ -70,4 +111,4 @@ and open the template in the editor.
     ?>  
 </body>
 </html>
-
+    

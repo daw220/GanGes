@@ -16,11 +16,27 @@ and open the template in the editor.
     echo(LS());
 ?>
     </head>
-    <body>
-              <?php
-    echo(sideBar());
+    <body> <?php
+    if(isset($_SESSION["valido"]))
+    {        
+        echo(sideBar());
+        ?> 
+        <div class="caja pri">
+            <h2>Compra/Venta</h2>
+            <h2>WIP</h2>
+            <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+        </div>
+        <?php
+    }
+    else
+    {
     ?>  
-        <h2>MIL ANUNCIOS</h2>
-        <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    <div class="caja pri">
+        <p class="text-uppercase text-center">Acceso denegado</p>
+        <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    </div>
+    <?php
+    }    
+    ?> 
     </body>
 </html>

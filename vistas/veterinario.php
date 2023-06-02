@@ -17,10 +17,28 @@ and open the template in the editor.
 ?>
     </head>
     <body>
-       <?php
-    echo(sideBar());
+    <?php
+    if(isset($_SESSION["valido"]))
+    {        
+        echo(sideBar());
+        ?> 
+        <div class="caja pri">
+            <h2>VETERINARIO CERCANOS</h2>
+            <h2>WIP</h2>
+            <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+        </div>
+        <?php
+    }
+    else
+    {
     ?>  
-        <h2>VETERINARIO CERCANOS</h2>
-        <a href="mPrincipal.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    <div class="caja pri">
+        <p class="text-uppercase text-center">Acceso denegado</p>
+        <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    </div>
+    <?php
+    }    
+    ?>  
+        
     </body>
 </html>
