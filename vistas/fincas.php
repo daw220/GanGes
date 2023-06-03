@@ -13,6 +13,11 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
         <?php
+    echo(LS());
+?>
+    </head>
+    <body>
+        <?php
     if(isset($_SESSION["valido"]))
     {        
         echo(sideBar());

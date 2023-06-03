@@ -32,12 +32,14 @@ session_start();
     if($accion == 1) //editar(Numero)
     {
         $aux = 0;
-        $crotal =$_REQUEST["crotal"];
-        $salud=$_REQUEST["salud"];
-     
-        $instruccion1 = "UPDATE `animales` SET `SALUD`='$salud' where ID = '$crotal'";
-
-        mysqli_query ($conexion ,$instruccion1);
+        $id = $_REQUEST["ID"];
+        $DNI = $_REQUEST["DNI"];
+        $NOMBRE = $_REQUEST["NOMBRE"];
+        $AP1 = $_REQUEST["AP1"];
+        $AP2 = $_REQUEST["AP2"];
+        $EMAIL = $_REQUEST["EMAIL"];
+        $instruccion1 ="UPDATE usuario SET DNI='$DNI', NOMBRE='$NOMBRE', APELLIDO1='$AP1', APELLIDO2='$AP2', EMAIL='$EMAIL' WHERE ID='$id'";
+        mysqli_query ($conexion ,$instruccion1); 
         $aux++;
 
         echo ($aux);       

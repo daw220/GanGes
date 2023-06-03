@@ -1,8 +1,8 @@
 <?php
 
 function conexion_BD(){
-    $co = mysqli_connect("localhost", "root", "","GanGes")
-    //$co = mysqli_connect("localhost", "root", "1234","ganges")
+    //$co = mysqli_connect("localhost", "root", "","GanGes")
+    $co = mysqli_connect("localhost", "root", "1234","ganges")
                 or die ("No se puede conectar con el servidor");
     return $co;
 };
@@ -76,10 +76,12 @@ function LS(){
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="../js/nav.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
     <script scr="../js/jquery-ui-i18n.min.js"></script>
+    <link rel="shortcut icon" href="../src/logo1.png">
     <?php
 }

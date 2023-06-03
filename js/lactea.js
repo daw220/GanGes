@@ -93,10 +93,16 @@ function tabla(columnas, json) {
 
         for (let j = 0; j < keys.length; j++) {
 
-            if(j != 0 && j != 4 && j != 3)
+            if(j == 1)
             {
                 let td1 = document.createElement("td");
                 td1.innerHTML = json[i][keys[j]];
+                tr.appendChild(td1);
+            }
+            if(j == 2)
+            {
+                let td1 = document.createElement("td");
+                td1.innerHTML=`${json[i][keys[j]]} L`;
                 tr.appendChild(td1);
             }
 

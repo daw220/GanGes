@@ -37,7 +37,6 @@ function Registro() {
     }
 
     form.append("accion", 1);
-
     $.ajax({
         type: "POST",
         url: "../operaciones/mPrincipalOperations.php",
@@ -45,9 +44,8 @@ function Registro() {
         contentType: false,
         processData: false,
         success: function (data) {   
-                  
             if (data == 1) {                     
-                document.location.href ="../vistas/inicio.php";
+               location.reload();
             } else {
                 let mensaje = document.getElementById("mensaje");
                 mensaje.innerHTML = "Edicion fallida. Intentelo de nuevo.";

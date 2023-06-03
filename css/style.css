@@ -341,11 +341,35 @@ body{
 }
 
 .carousel-item p{
-  color: black;
+  
+  -webkit-text-stroke: 2px black;
+  -webkit-text-fill-color: #FFF;
   font-weight: bold;
+  font-size: 20pt;
+  
 }
 
 .carousel-item h5{
-  color: black;
+  -webkit-text-stroke: 2px black;
+  -webkit-text-fill-color: #FFF;
   font-weight: bold;
+  font-size: 20pt;
+}
+.carousel-item img{
+  width: 100%;
+  height: 80%;
+}
+#car{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#fotos{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
