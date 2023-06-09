@@ -80,9 +80,10 @@
     else
     {
     ?>
-  
-    <p>Acceso denegado</p>
-    <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+  <div class="caja pri">
+        <p class="text-uppercase text-center">Acceso denegado</p>
+        <a href="index.php" type="button" id="volver" class="btn btn-danger">Volver</a>
+    </div>
     <?php
     }    
     ?>
